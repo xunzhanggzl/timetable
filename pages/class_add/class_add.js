@@ -285,13 +285,29 @@ Page({
     let findindex = this.data.setClass.findIndex((arr) => {
       return arr.id === event.target.dataset.index;
     })
-    // console.log(findindex)
-    this.data.setClass.splice(findindex,1)
-    
-    wx.setStorageSync("setClass", this.data.setClass);
-    wx.reLaunch({
-      url: '../timetable/index',
+    let that = this;
+    let info = this.data.setClass[findindex]
+    // console.log(info)
+    wx.showModal({
+      title:"删除课程",
+      content:`确定删除 ${info.teacher} 的 ${info.name} 课程吗？`,
+      success(res){
+        if (res.confirm) {
+          that.data.setClass.splice(findindex, 1)
+          wx.setStorageSync("setClass", that.data.setClass);
+          // wx.redirectTo({
+          //   url: '../class_add/class_add'
+          // })
+          const pages = getCurrentPages();
+          const currPage  = pages[pages.length - 1]
+          const prevPage = pages[pages.length - 2];
+          console.log(currPage)
+          prevPage.onLoad();
+          currPage.onLoad();
+        }
+      }
     })
+    
   }
 
 })

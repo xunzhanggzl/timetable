@@ -31,7 +31,10 @@ Page({
       day:1,
       classTime:1,
       flat:'博1',
-      roomspace:[]
+      roomspace:[],
+
+      // 新增
+      showData:false
   },
 
   onLoad:function(){
@@ -171,20 +174,25 @@ Page({
       that.setData({
         roomspace:e["data"]
       });
-      console.log(that.data.roomspace);
       if(e.code==0){
-        Dialog.alert({
-          message: that.data.roomspace
-        });
+        // Dialog.alert({
+        //   message: that.data.roomspace,
+        //   messageAlign:"left"
+        // });
+        that.setData({
+          showData:true
+        })
       }else{
         wx.showToast({
           title: '抓取失败，服务器错误',
           icon: 'none',
         });
       }
-
-      
     })
-
+  },
+  closelist(){
+    this.setData({
+      showData:false
+    })
   }
 })

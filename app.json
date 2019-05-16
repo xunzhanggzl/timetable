@@ -32,28 +32,28 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "icon/shouye.png",
-        "selectedIconPath": "icon/shouye_selected.png",
+        "selectedIconPath": "icon/newHome.png",
         "selectedColor": "#1afa29"
       },
       {
         "pagePath": "pages/timetable/index",
         "text": "课表",
         "iconPath": "icon/kebiaoxinxi.png",
-        "selectedIconPath": "icon/kebiaoxinxi_selected.png",
+        "selectedIconPath": "icon/newClass.png",
         "selectedColor": "#1afa29"
       },
       {
         "pagePath": "pages/info/index",
         "text": "考试",
         "iconPath": "icon/zaixiankaoshi.png",
-        "selectedIconPath": "icon/zaixiankaoshi_selected.png",
+        "selectedIconPath": "icon/newExam.png",
         "selectedColor": "#1afa29"
       },
       {
         "pagePath": "pages/my/index",
         "text": "我的",
         "iconPath": "icon/wode.png",
-        "selectedIconPath": "icon/wode_selected.png",
+        "selectedIconPath": "icon/newPerson.png",
         "selectedColor": "#1afa29"
       }
     ]

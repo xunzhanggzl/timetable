@@ -17,18 +17,32 @@
   bind:close="onClose"
   z-index="230"
 >
-    <van-picker columns="{{ columns }}" bind:change="onPickerChange" data-index='' />
+  <van-picker
+    columns="{{ columns }}"
+    default-index="{{currentWeek}}"
+    bind:change="onPickerChange"
+  />
 </van-dialog>
 
 
 <view class="top">
-  <view wx:for="{{['一','二','三','四','五','六','日']}}" wx:key="item" class="top-text">周{{item}}</view>
+  <view class="month">{{month}}月</view>
+  <!-- <view wx:for="{{['一','二','三','四','五','六','日']}}" wx:key="item" class="top-text">
+    <view class="day">周{{item}}</view>
+  </view> -->
+  <view wx:for="{{currentweekday}}" wx:key="item" class="top-text">
+    <view class="day">{{item.DayOfTheWeek}}</view>
+    <view class="day">{{item.riqi}}</view>
+
+  </view>
 </view>
 <scroll-view scroll-y="true" class="scroll">
-  <view style="height:1600rpx;width:730rpx;display:flex;">
-    <view style="color:#7cba23;">
-      <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}" class="left" wx:key="item">
-        {{item}}
+  <view style="height:1100rpx;display:flex;">
+    <view style="color:#000;">
+      <view wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}" class="left" wx:key="item">
+        <text class="classSection">{{item}}</text>
+        <text class="classTimestart">{{classTimestart[item-1]}}</text>
+        <text class="classTimeend">{{classTimeend[item-1]}}</text>
       </view>
     </view>
     <!-- <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11]}}">
@@ -39,10 +53,10 @@
     <!--课表-->
     <view wx:for="{{wlist}}" wx:key="item">
 
-        <view class="flex-item kcb-item" bindtap="showCardView" data-statu="{{item.xqj}}" data-index="{{item.skjc}}" style="margin-left:{{(item.xqj-1)*100}}rpx;margin-top:{{(item.skjc-1)*150+5}}rpx;height:{{item.skcd*150-5}}rpx;background-color:{{colorArrays[index%8]}}">   
+        <view class="flex-item kcb-item" bindtap="showCardView" data-statu="{{item.xqj}}" data-index="{{item.skjc}}" style="margin-left:{{(item.xqj-1)*99}}rpx;margin-top:{{(item.skjc-1)*110 + 2}}rpx;height:{{item.skcd*110-5}}rpx;background-color:{{colorObj[item.id]}}">   
 
-        <view class="smalltext" >{{item.kcmc}}</view>
-      </view>
+          <view class="smalltext" >{{item.kcmc}}</view>
+        </view>
     </view>
   </view>
   <view style='height:200rpx'></view>

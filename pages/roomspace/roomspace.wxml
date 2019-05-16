@@ -105,4 +105,19 @@
 
   <button bindtap='submit'>查询</button>
 
+  <view class="roomlist">
+    <view class="title">
+      <text>所有的空教室</text>
+      <button class="btnclose" size="mini" type="warn" bindtap="closelist">关闭</button>
+    </view>
+  
+    <van-transition show="{{showData}}" custom-class="block" name="slide-up">
+      <view class="showData">
+        <view wx:for="{{roomspace}}" wx:key="*this" class="dataitem">{{item}}</view>
+      </view>
+    </van-transition>
+  </view>
+  
+  
+
   <!-- <text class="tips" >空教室查询输入规则：\n1.周数对应当前周，只写数字\n2.星期以星期一为开始，分别对应1，2，3，4，5，6，7\n3.节次代表课程开始时对应的节数\n4.楼号输入 博+数字 查询</text> -->

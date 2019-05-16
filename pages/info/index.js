@@ -8,7 +8,8 @@ Page({
   data: {
     records:[],
     exams:[],
-    isUpdate: false
+    isUpdate: false,
+    showHideFlag:true
   },
 
   /**
@@ -30,12 +31,20 @@ Page({
           console.info(res);
           let exams = res['data']['exams'];
           exams.forEach(item => {
-            let examTime = item['time'];
-            examTime = examTime.substring(0, 11);
-            console.info(examTime);
-            examTime = examTime.replace(/-/g, '/');
+
+            let examTimeDay = item['time'];
+            let examTimeStart = item['time'];
+
+            examTimeDay = examTimeDay.substring(0, 10);
+            examTimeDay = examTimeDay.replace(/-/g, '/');
+
+            examTimeStart = examTimeStart.substring(11, 16);
+
+            let examTime = examTimeDay + " " + examTimeStart;
+            // console.log(examTime)
+
             let openDate = new Date(examTime).getTime();
-            let day = Math.trunc((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
+            let day = Math.floor((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
             if (day >= 0) {
               item.relese = "剩余" + day + "天";
             } else {
@@ -50,12 +59,20 @@ Page({
       });
     }else{
       exams.forEach(item => {
-        let examTime = item['time'];
-        examTime = examTime.substring(0, 11);
-        console.info(examTime);
-        examTime = examTime.replace(/-/g, '/');
+        let examTimeDay = item['time'];
+        let examTimeStart = item['time'];
+
+        examTimeDay = examTimeDay.substring(0, 10);
+        examTimeDay = examTimeDay.replace(/-/g, '/');
+
+        examTimeStart = examTimeStart.substring(11, 16);
+
+        let examTime = examTimeDay + " " + examTimeStart;
+        // console.log(examTime)
+
         let openDate = new Date(examTime).getTime();
-        let day = Math.trunc((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
+        let day = Math.floor((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
+        // console.log(day)
         if (day >= 0) {
           item.relese = "剩余" + day + "天";
         } else {
@@ -65,10 +82,6 @@ Page({
       });
       that.setData({ exams: exams });
     }
-
-    
-
-
   },
   getRecordInfo: function(){
     let that = this;
@@ -103,6 +116,31 @@ Page({
     }
 
   },
+
+  /**
+   点击显示或者隐藏已结束的考试
+   */
+  showHideEnd(){
+    // console.log(this.data.showHideFlag)
+    // console.log(this.data.exams)
+    if (this.data.showHideFlag) {
+      const afterchange = this.data.exams.filter((arr) => {
+        return arr.relese !== "已结束";
+      })
+      // console.log(this.data.exams)
+      // console.log(after)
+      this.setData({
+        exams: afterchange,
+        showHideFlag: false
+      })
+    } else {
+      let all = wx.getStorageSync('exams');
+      this.setData({
+        exams: all,
+        showHideFlag: true
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -135,8 +173,22 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getExamInfo();
-    this.getRecordInfo();
+    
+    wx.showNavigationBarLoading();
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1000
+    })
+    setTimeout(() => {
+      this.getExamInfo();
+      this.getRecordInfo();
+      this.setData({
+        showHideFlag:true
+      })
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+    }, 1000);
   },
 
   /**

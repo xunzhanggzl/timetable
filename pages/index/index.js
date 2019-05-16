@@ -41,7 +41,7 @@ Page({
             elec_show_text: false,
           });
           wx.showToast({
-            title: '抓取失败，服务器错误',
+            title: '暂不支持该功能',
             icon: 'none',
           });
           return;
@@ -57,14 +57,24 @@ Page({
   getTodaySubject: function() {
     let that = this;
     let subjectList = wx.getStorageSync("kb") || [];
+    let addsubjectList = wx.getStorageSync("setClass") || [];
     //console.info(subjectList);   //本地数据查看
-    if (subjectList.length > 0) {
+    if (subjectList.length > 0 || addsubjectList.length > 0) {
 
       let kbListCurWeek = [];
       subjectList.forEach(item => {
 
         //console.info(item['day']);
         if (this.hasSubject(item['week_list'], this.data.currentWeek) && item['day'] === this.data.currentDay){
+          item.showTime = item['start'] + "-" + (item['start'] + item['step'] - 1) + "节";
+          //console.info(item['day'])
+          kbListCurWeek.push(item);
+        }
+      });
+      addsubjectList.forEach(item => {
+
+        //console.info(item['day']);
+        if (this.hasSubject(item['week_list'], this.data.currentWeek) && item['day'] === this.data.currentDay) {
           item.showTime = item['start'] + "-" + (item['start'] + item['step'] - 1) + "节";
           //console.info(item['day'])
           kbListCurWeek.push(item);

@@ -3,7 +3,13 @@
   <view class='panel'>
     <view class='panel-header'>
       <image class='panel-header-image' src='../../icon/fingerpost.png'></image>
-      <view class='panel-header-title'>最近考试</view>
+      <view class='panel-header-title'>
+        最近考试
+        <button class="showHide" size="mini" bindtap="showHideEnd">
+          <text wx:if="{{!showHideFlag}}">显示</text>
+          <text wx:if="{{showHideFlag}}">隐藏</text>         
+        </button>
+      </view>
     </view>
     <view class='panel-body'>
 

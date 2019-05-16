@@ -1,4 +1,4 @@
-<!--pages/class_add/class_add.wxml-->
+      <!--pages/class_add/class_add.wxml-->
 <van-notify id="van-notify" />
 
 <view class="pages">
@@ -115,7 +115,7 @@
       {{item.name}}
       {{item.teacher}}
       {{item.room}}
-      <!-- <view wx:for="{{item.week_list}}"  wx:key="item"> 
+      <!-- <view wx:for="{{item.week_list}}"  wx:key="index"> 
         第{{item}}周
       </view> -->
       <button class="delete-btn" data-index="{{item.id}}" type="warn"  bindtap='deleteClass'>删除</button>

@@ -1,4 +1,33 @@
 /* pages/timetable/index.wxss */
+.nav{
+  height: 80rpx;
+  display: flex;
+  justify-content:center;
+}
+.nav .nav-flex{
+  width: 33%;
+}
+.nav .btn{
+  line-height: 80rpx;
+}
+.nav .title{
+  line-height: 80rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.popup{
+  /* width: 300rpx; */
+  /* height: 600rpx; */
+  /* background-color: #fff;
+  z-index: 101; */
+  /* display: flex;
+  flex-wrap:wrap; */
+}
+.popup .popitem{
+  /* margin:0;
+  padding: 0; */
+}
 
 .flex-item {
   width: 90rpx;
@@ -47,7 +76,7 @@
 
 .scroll {
   height: 1170rpx;
-  z-index: 101;
+  z-index: 10;
   position: fixed;
 }
 

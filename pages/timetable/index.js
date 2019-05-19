@@ -2,9 +2,10 @@
 let util = require("../../utils/util.js");
 var app = getApp();
 
-
 Page({
   data: {
+    navH:0,
+    popupShow:false,
     // colorArrays: ["#55efc4", "#81ecec", "#55efc4", "#fd79a8", "#74b9ff", "#55efc4", "#81ecec", "#fd79a8"],
     colorArrays: ["#55efc4", "#81ecec", "#fd79a8", "#74b9ff", 
                   "#f38181", "#fce38a", "#d6f7ad", "#95e1d3", 
@@ -62,6 +63,17 @@ Page({
     })
   },
   
+  onClosePop(){
+    this.setData({
+      popupShow: false
+    });
+  },
+
+  OpenPopup(){
+    this.setData({
+      popupShow: true
+    });
+  },
   /*
     获取月份
   */
@@ -160,14 +172,16 @@ Page({
   OpenDialog: function () {
     this.setData({
       activeName: 0,
-      show: true
+      show: true,
+      popupShow: false
     });
 
   },
 
   returnCurrentWeek: function () {
     this.setData({
-      currentWeek: this.data.copyWeek
+      currentWeek: this.data.copyWeek,
+      popupShow:false
     });
     wx.setNavigationBarTitle({
       title: "第" + this.data.currentWeek + "周",
@@ -178,7 +192,11 @@ Page({
     this.gettheMonth();
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
+    this.setData({
+      navH: app.globalData.navHeight
+    })
+
     console.log('onLoad');
     this.getInfo();
     this.getTimeTableInfo();

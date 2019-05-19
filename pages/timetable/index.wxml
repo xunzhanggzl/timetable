@@ -1,13 +1,32 @@
 <!--pages/timetable/index.wxml-->
+<view class="nav" style="margin-top:{{navH}}px">
+  <view class="nav-flex btn" bindtap="OpenPopup">
+    <van-icon name="bars" />
+  </view>
+  <view class="nav-flex title">第{{currentWeek}}周</view>
+  <view class="nav-flex right"></view>
+</view>
+<van-popup
+  show="{{popupShow}}"
+  position="bottom"
+  safe-area-inset-top="{{true}}"
+  overlay="{{ true }}"
+  custom-class = "popup"
+  bind:close="onClosePop"
+>
+  <van-button class='change-week' block="true" custom-class="popitem" type="info" bindtap='OpenDialog'>选择周</van-button>
+  <van-button class='change-week' block="true" custom-class="popitem" type="primary" bindtap='returnCurrentWeek'>返回当前周</van-button>
+  <van-button class='change-week' block="true" custom-class="popitem" type="warning" bindtap='add_class'>添加课程</van-button>
+</van-popup>
 
-<van-collapse value="{{ activeName }}" bind:change="onChange" accordion >
+<!-- <van-collapse value="{{ activeName }}" bind:change="onChange" accordion >
   <van-collapse-item title="功能分区" name="1">
     <van-button  class='change-week' bindtap='OpenDialog'>选择周</van-button>
     <van-button  class='change-week' bindtap='returnCurrentWeek'>返回当前周</van-button>
     <van-button  class='change-week' bindtap='add_class'>添加课程</van-button>
-    <!-- <button class='change-week'>课程管理</button> -->
+    <button class='change-week'>课程管理</button>
   </van-collapse-item>
-</van-collapse>
+</van-collapse> -->
 
 <van-dialog
   use-slot
@@ -19,7 +38,7 @@
 >
   <van-picker
     columns="{{ columns }}"
-    default-index="{{currentWeek}}"
+    default-index="{{currentWeek-1}}"
     bind:change="onPickerChange"
   />
 </van-dialog>

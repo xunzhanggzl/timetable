@@ -70,6 +70,17 @@ App({
         }
       }
     })
+
+    // 获取手机系统信息
+    wx.getSystemInfo({
+      success: res => {
+        //导航高度
+        this.globalData.navHeight = res.statusBarHeight;
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
   } ,
   globalData: {
     userInfo: null,
@@ -78,6 +89,7 @@ App({
     rotate: 0,
     hat_center_x: 0,
     hat_center_x: 0,
-    currentHatId: 1
+    currentHatId: 1,
+    navHeight: 0
   }
 })

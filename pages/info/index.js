@@ -24,12 +24,12 @@ Page({
 
   getExamInfo: function(){
     let that = this;
-    let exams = wx.getStorageSync("exams") || null;
-    if(that.data.isUpdate || exams == null){
+    let exams = wx.getStorageSync("exams");
+    if(that.data.isUpdate || (exams == false) ){
       util.getReq("exams", {}, function (res) {
         if (res['code'] === 0) {
           console.info(res);
-          let exams = res['data']['exams'];
+          let exams = [...res['data']['exams']];
           exams.forEach(item => {
 
             let examTimeDay = item['time'];
@@ -52,8 +52,8 @@ Page({
             }
 
           });
-          wx.setStorageSync("exams", res['data']['exams']);
-          that.setData({ exams: res['data']['exams'] });
+          wx.setStorageSync("exams", exams);
+          that.setData({ exams: exams });
         }
 
       });
@@ -83,11 +83,16 @@ Page({
       that.setData({ exams: exams });
     }
   },
+
+  // setExamInfo() {
+
+  // },
+
   getRecordInfo: function(){
     let that = this;
-    let records = wx.getStorageSync("records") || null;
+    let records = wx.getStorageSync("records");
 
-    if (that.data.isUpdate || records == null) {
+    if (that.data.isUpdate || (records == false)) {
       util.getReq("record", {}, function (res) {
         if (res['code'] === 0) {
           console.info(res);
@@ -173,7 +178,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    let showHideFlag = !this.data.showHideFlag;
     wx.showNavigationBarLoading();
     wx.showToast({
       title: '加载中',
@@ -184,8 +189,9 @@ Page({
       this.getExamInfo();
       this.getRecordInfo();
       this.setData({
-        showHideFlag:true
+        showHideFlag: showHideFlag
       })
+      this.showHideEnd()
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1000);

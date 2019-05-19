@@ -13,7 +13,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "2.7.0",
 	"appid": "wx6fb9014aa357a79e",
 	"projectname": "timetable",
 	"cloudfunctionRoot": "cloud-functions/",

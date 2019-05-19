@@ -22,20 +22,24 @@ Page({
     })
   },
   onLoad:function(option){
-    var elec_info=wx.getStorageSync("elec_info")||null;
-    if(elec_info==null){
+    // this.getEleInfo();
+  },
 
-    }else{
+  getEleInfo(){
+    var elec_info = wx.getStorageSync("elec_info") || null;
+    if (elec_info == null) {
+      return;
+    } else {
       console.log(elec_info);
-      var that=this;
+      var that = this;
       wx.showNavigationBarLoading();
-      util.getReq("ele",elec_info,function(res){
+      util.getReq("ele", elec_info, function (res) {
         that.setData({
           elec_choose_button: false,
           elec_show_text: true,
         });
         console.log(res);
-        if (res.code==1){
+        if (res.code == 1) {
           that.setData({
             elec_choose_button: true,
             elec_show_text: false,
@@ -45,8 +49,10 @@ Page({
             icon: 'none',
           });
           return;
-        }else{
-          that.setData({ elec: res.data.ele });
+        } else {
+          that.setData({
+            elec: res.data.ele
+          });
           wx.hideNavigationBarLoading();
         }
       });

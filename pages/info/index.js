@@ -25,7 +25,7 @@ Page({
   getExamInfo: function(){
     let that = this;
     let exams = wx.getStorageSync("exams");
-    if(that.data.isUpdate || (exams == false) ){
+    if(that.data.isUpdate || (exams === null) || (exams == false)){
       util.getReq("exams", {}, function (res) {
         if (res['code'] === 0) {
           console.info(res);
@@ -58,28 +58,28 @@ Page({
 
       });
     }else{
-      exams.forEach(item => {
-        let examTimeDay = item['time'];
-        let examTimeStart = item['time'];
+      // exams.forEach(item => {
+      //   let examTimeDay = item['time'];
+      //   let examTimeStart = item['time'];
 
-        examTimeDay = examTimeDay.substring(0, 10);
-        examTimeDay = examTimeDay.replace(/-/g, '/');
+      //   examTimeDay = examTimeDay.substring(0, 10);
+      //   examTimeDay = examTimeDay.replace(/-/g, '/');
 
-        examTimeStart = examTimeStart.substring(11, 16);
+      //   examTimeStart = examTimeStart.substring(11, 16);
 
-        let examTime = examTimeDay + " " + examTimeStart;
-        // console.log(examTime)
+      //   let examTime = examTimeDay + " " + examTimeStart;
+      //   // console.log(examTime)
 
-        let openDate = new Date(examTime).getTime();
-        let day = Math.floor((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
-        // console.log(day)
-        if (day >= 0) {
-          item.relese = "剩余" + day + "天";
-        } else {
-          item.relese = "已结束";
-        }
+      //   let openDate = new Date(examTime).getTime();
+      //   let day = Math.floor((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
+      //   // console.log(day)
+      //   if (day >= 0) {
+      //     item.relese = "剩余" + day + "天";
+      //   } else {
+      //     item.relese = "已结束";
+      //   }
 
-      });
+      // });
       that.setData({ exams: exams });
     }
   },
@@ -92,7 +92,7 @@ Page({
     let that = this;
     let records = wx.getStorageSync("records");
 
-    if (that.data.isUpdate || (records == false)) {
+    if (that.data.isUpdate || !(records === null) || (records == false)) {
       util.getReq("record", {}, function (res) {
         if (res['code'] === 0) {
           console.info(res);
@@ -108,7 +108,8 @@ Page({
 
   isUpdate: function(){
     let lastTime = wx.getStorageSync("infoUpdate")||null;
-    if (lastTime == null){
+    if (lastTime === null){
+      wx.setStorageSync("infoUpdate", new Date().getTime());
       this.setData({ isUpdate:true });
       console.info("lastTime is null");
     }
@@ -128,8 +129,9 @@ Page({
   showHideEnd(){
     // console.log(this.data.showHideFlag)
     // console.log(this.data.exams)
+    let all = [...wx.getStorageSync('exams')];
     if (this.data.showHideFlag) {
-      const afterchange = this.data.exams.filter((arr) => {
+      const afterchange = all.filter((arr) => {
         return arr.relese !== "已结束";
       })
       // console.log(this.data.exams)
@@ -139,7 +141,6 @@ Page({
         showHideFlag: false
       })
     } else {
-      let all = wx.getStorageSync('exams');
       this.setData({
         exams: all,
         showHideFlag: true
@@ -178,7 +179,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    let showHideFlag = !this.data.showHideFlag;
+    // let showHideFlag = !this.data.showHideFlag;
     wx.showNavigationBarLoading();
     wx.showToast({
       title: '加载中',
@@ -186,12 +187,12 @@ Page({
       duration: 1000
     })
     setTimeout(() => {
-      this.getExamInfo();
-      this.getRecordInfo();
-      this.setData({
-        showHideFlag: showHideFlag
-      })
-      this.showHideEnd()
+      // this.getExamInfo();
+      // this.getRecordInfo();
+      // this.setData({
+      //   showHideFlag: showHideFlag
+      // })
+      // this.showHideEnd()
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1000);

@@ -59,7 +59,16 @@ Page({
 
   },
 
+  removeStore(){
+    let storeStr = ["days", "kb", "infoUpdate", "exams", "records", "openDate", "year", "term", "currentWeek", "currentDay", "user"];
+    console.log(storeStr.length);
+    for(let i = 0; i < storeStr.length; i ++) {
+      wx.removeStorageSync(storeStr[i]);
+    }
+  },
+
   formSubmit: function(){
+    let that = this;
     if (this.data.username.length == 0){
       wx.showToast({
         title: '用户名不能为空'
@@ -73,6 +82,7 @@ Page({
       return;
     }
     console.info(this.data.username + this.data.password);
+    // wx.clearStorageSync();
 
     util.req("bd", {
       'username': this.data.username,
@@ -80,7 +90,8 @@ Page({
     }, function(res){
         console.info(res);
         if(res['code'] === 0){
-          wx.switchTab({
+          that.removeStore();
+          wx.reLaunch({
             url: '/pages/index/index',
           })
         }else{

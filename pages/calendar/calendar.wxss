@@ -1,5 +1,16 @@
 /* pages/calendar/calendar.wxss */
-.calendar-image{
+/* .calendar-image{
   margin-left: 50rpx;
   height: 1300rpx;
+} */
+.img{
+  margin: 0 20rpx;
+}
+.img image{
+  width: 100%;
+}
+.btn{
+  display: flex;
+  justify-content:center;
+  margin-bottom: 10rpx;
 }

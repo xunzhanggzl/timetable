@@ -1,5 +1,12 @@
 <view>
-  <image class='calendar-image' src='../../icon/image/calendar.png'></image>
-  <button style='background:rgb(0,160,0);color:white' bindtap='showpicture'>保存</button>
-  <view style='height:100rpx'></view> 
+  <view class="img" >
+    <!-- <image class='calendar-image' bindtap="FullScreenPreview" data-src="../../icon/image/calendar.png" mode="widthFix" src='../../icon/image/calendar.png'></image> -->
+        <image class='calendar-image' mode="widthFix" src='../../icon/image/calendar.png'></image>
+  </view>
+  <!-- <button style='background:rgb(0,160,0);color:white' bindtap='showpicture'>保存</button> -->
+
+  <view class="btn">
+    <van-button type="primary" size="small" bindtap='storePicture'>保存</van-button>
+  </view>
+  <!-- <view style='height:100rpx'></view>  -->
 </view>

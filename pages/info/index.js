@@ -27,6 +27,7 @@ Page({
     let exams = wx.getStorageSync("exams");
     if(that.data.isUpdate || (exams === null) || (exams == false)){
       util.getReq("exams", {}, function (res) {
+        // console.log('请求了');
         if (res['code'] === 0) {
           console.info(res);
           let exams = [...res['data']['exams']];
@@ -80,6 +81,7 @@ Page({
       //   }
 
       // });
+      let exams = [...wx.getStorageSync("exams")];
       that.setData({ exams: exams });
     }
   },
@@ -101,6 +103,7 @@ Page({
         }
       });
     }else{
+      let records = [...wx.getStorageSync("records")];
       that.setData({ records: records });
     }
 
@@ -112,13 +115,18 @@ Page({
       wx.setStorageSync("infoUpdate", new Date().getTime());
       this.setData({ isUpdate:true });
       console.info("lastTime is null");
+      return;
     }
-    if((new Date().getTime() - lastTime ) / (1000 * 60 * 60 * 8) >= 1){
+    
+    if ((new Date().getTime() - lastTime) / (1000 * 60 * 60 * 8) >= 1) {
+      // console.log("设置了超过一天重新请求")
       wx.setStorageSync("infoUpdate", new Date().getTime());
       console.info((new Date().getTime() - lastTime) / (1000 * 60 * 60 * 8));
       this.setData({ isUpdate: true });
+      return;
     }else{
       this.setData({ isUpdate: false });
+      return;
     }
 
   },
@@ -186,6 +194,11 @@ Page({
       icon: 'loading',
       duration: 1000
     })
+    this.isUpdate();
+    if (this.data.isUpdate) {
+      this.getExamInfo();
+      this.getRecordInfo();
+    }
     setTimeout(() => {
       // this.getExamInfo();
       // this.getRecordInfo();

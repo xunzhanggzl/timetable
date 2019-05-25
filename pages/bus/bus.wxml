@@ -1,5 +1,142 @@
 <view>
-  <image class="bus-image" src='../../icon/image/bus.png' ></image>
-    <button style='background:rgb(0,160,0);color:white' bindtap='showpicture'>保存</button> 
-    <view style='height:100rpx'></view>
+  <!-- <image class="bus-image" src='../../icon/image/bus.png' ></image> -->
+  <!-- <button style='background:rgb(0,160,0);color:white' >保存</button>  -->
+  <view class="bus">
+    <view class="title">2019年2月25日起校内通勤班车执行时间表</view>
+    <view class="select">
+      <van-button size="small" type="info" bindtap="changeToWork">工作日表</van-button>
+      <view class="info" style="width:30rpx"></view>
+      <van-button size="small" type="info" bindtap="changeToRelax">休息日表</van-button>
+
+    </view>
+
+    <view class="now">当前为:{{whatTable}}表</view>
+
+    <view class="table" hidden="{{!workDay}}">
+      <view class="tr bg-w">
+        <view class="th">文昌中心路发车时间</view>
+        <view class="th">南湖路线安排</view>
+        <view class="th ">南湖公交楼发车时间</view>
+      </view>
+      <view class="tr bg-morning">
+        上午班车
+      </view>
+      <block wx:for="{{listDataWorkMorning}}" wx:key="{{timeStart}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+      </block>
+
+      <view class="tr bg-afternoon">
+        下午班车
+      </view>
+
+      <block wx:for="{{listDataWorkAfternoon}}" wx:key="{{timeStart}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+      </block>
+
+      <view class="tr bg-night">
+        晚上班车
+      </view>
+      <view class="tr">
+        <view class="td">6:10 6:30</view>
+        <view class="td">中心路始发</view>
+        <view class="td">6:40 6:50</view>
+      </view>
+      <view class="tr bg-note" style="height:75rpx">
+        注：以下时段由电教馆始发,(风华园不停) 人满后按顺序发车(约20分钟间隔)
+      </view>
+      <view class="tr bg-g">
+        <view class="td">9:30</view>
+        <view class="td">末班车</view>
+        <view class="td">9:50</view>
+      </view>
+    </view>
+
+    <view class="table" hidden="{{workDay}}" >
+      <view class="tr bg-w">
+        <view class="th">文昌中心路发车时间</view>
+        <view class="th">南湖路线安排</view>
+        <view class="th ">南湖公交楼发车时间</view>
+      </view>
+      <view class="tr bg-morning">上午班车</view>
+      <block wx:for="{{listDataRelaxMorning}}" wx:key="{{timeStart}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+      </block>
+      <view class="tr bg-afternoon">下午班车</view>
+      <block wx:for="{{listDataRelaxAfternoon}}" wx:key="{{timeStart}}">
+        <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+        <view class="tr" wx:else>
+          <view class="td">{{item.timeStart}}</view>
+          <view class="td">{{item.way}}</view>
+          <view class="td">{{item.timeEnd}}</view>
+        </view>
+      </block>
+      <view class="tr bg-night">晚上班车</view>
+      <view class="tr">
+        <view class="td">6:10 6:25</view>
+        <view class="td">中心路始发</view>
+        <view class="td">6:30 6:45</view>
+      </view>
+      <view class="tr bg-note" style="height:75rpx">注：以下时段由电教馆始发,(风华园不停) 人满后按顺序发车(约20分钟间隔)</view>
+      <view class="tr bg-g">
+        <view class="td">9:30</view>
+        <view class="td">末班车</view>
+        <view class="td">9:50</view>
+      </view>
+    </view>
+
+    <view class="notice">
+      <view class="notice-top">
+        <view class="top-left">
+          注意:
+        </view>
+        <view class="top-right">
+          <view class="one">1.在时间后面有(▲)标记的不经过风华园。</view>
+          <view class="two">2.南线、北线表示进南湖校区内行驶路线。</view>
+          <view class="three">3.如有团体用车请与运输服务中心联系预约，电话：83885871、83885812</view>
+        </view>
+      </view>
+      <view class="notice-bottom">
+        <text class="prompt">友情提示：</text>乘坐班车出现以下情况请老师和同学给予谅解:1.国家道路交通法规规定自备大客车不准超载(超载处罚200元、扣6分,单位连续出现超载管理者要接受处罚)校车满员后,会导致余下站点无法停靠和上下人;2.车辆有学校各单位重要活动包车沿途站点不能停车;3.车辆出现故障,空车需要外出维修、加油外出不能停车;4.有可能出现因道路堵车晚点情况;5.突发交通事故造成车辆晚点。敬请各位老师和同学乘坐班车一定要留有时间余量,尽量不要掐点乘车,以免遇到上述情况会耽误您的重要工作,我们会努力工作尽量避免以上情况发生,感谢您对我们的理解和支持!
+      </view>
+    </view>
+  </view>
+
+  
+
+  <view class="btn">
+    <van-button type="primary" size="small" bindtap='storePicture'>保存</van-button>
+  </view>
+
+  <!-- <view style='height:100rpx'></view> -->
 </view>

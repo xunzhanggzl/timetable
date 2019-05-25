@@ -7,7 +7,7 @@
   <view class="choose">
     <van-popup show="{{ show_week }}" bind:close="onPickerClose_week"  position="bottom">
     <view bindtap='onPickerClose_week' class='close-picker' >关闭</view>
-    <van-picker columns="{{ columns_week }}" bind:change="onPickerChange_week" />
+    <van-picker columns="{{ columns_week }}"  default-index="{{  typeIndex_week }}" bind:change="onPickerChange_week" />
     </van-popup>
         <van-cell
         class="van-cell-shq"

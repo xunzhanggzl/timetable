@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "校历"
+  "navigationBarTitleText": "校历",
+  "usingComponents": {
+    "van-button": "../../vant-weapp/button/index"
+  }
 }

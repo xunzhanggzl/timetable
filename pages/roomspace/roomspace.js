@@ -50,10 +50,16 @@ Page({
     for (var i = 0; i < 10; i++) {
       jc[i] = "第" + (i + 1) + "节课";
     };
+    let current_week = wx.getStorageSync("currentWeek");
+
     this.setData({
       columns_week:week,
-      columns_jc:jc
-    });
+      columns_jc:jc,
+      typeIndex_week: current_week-1,
+      typeName_week: `第${current_week}周`,
+      week: current_week 
+
+    })
   },
 
   onPickerChange_week: function (event) {

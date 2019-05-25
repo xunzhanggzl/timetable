@@ -1,4 +1,89 @@
-.bus-image{
+/* .bus-image{
   margin-left: 50rpx;
   height: 1600rpx;
+} */
+.bus{
+  margin: 0 20rpx;
+}
+.bus .title{
+  text-align: center;
+  font-size: 30rpx;
+}
+.bus .select{
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 5rpx; */
+}
+
+
+.table {
+  border: 0px solid darkgray;
+}
+.tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  height: 40rpx;
+  font-size: 25rpx;
+  align-items: center;
+}
+.td {
+  width:40%;
+  justify-content: center;
+  text-align: center;
+}
+.bg-w{
+  background: snow;
+}
+.bg-g{
+  background: #E6F3F9;
+}
+.bg-morning{
+  background: #95E1D3;
+}
+.bg-afternoon{
+  background: #FCE38A;
+}
+.bg-night{
+  background:#EAFFD0;
+}
+.bg-note{
+  background: #F38181;
+}
+.th {
+  width: 40%;
+  justify-content: center;
+  background: #F6416C;
+  color: #fff;
+  display: flex;
+  height: 50rpx;
+  font-size: 25rpx;
+  align-items: center;
+}
+
+.now{
+  display: flex;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.notice{
+  font-size: 25rpx;
+}
+.notice .notice-top{
+  display: flex;
+
+}
+.notice .notice-top .top-left{
+  width: 15%;
+
+}
+.notice .notice-bottom .prompt{
+  font-weight: bolder;
+}
+
+.btn{
+  display: flex;
+  justify-content:center;
+  margin-bottom: 10rpx;
 }

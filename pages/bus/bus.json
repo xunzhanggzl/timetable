@@ -1,3 +1,6 @@
 {
-   "navigationBarTitleText": "校车时刻表"
+   "navigationBarTitleText": "校车时刻表",
+   "usingComponents": {
+      "van-button": "../../vant-weapp/button/index"
+   }
 }

@@ -21,17 +21,17 @@ Page({
     })
   },
 
-  // FullScreenPreview(event) {
-  //   let src = event.currentTarget.dataset.src; //获取data-src
-  //   console.log(src)
-  //   wx.previewImage({
-  //     // current: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg',
-  //     urls: ['https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg'],
-  //     success: (result)=>{
+  FullScreenPreview(event) {
+    let src = event.currentTarget.dataset.src; //获取data-src
+    // console.log(src)
+    wx.previewImage({
+      // current: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg',
+      urls: ['https://s2.ax1x.com/2019/05/26/VAhwB8.jpg'],
+      success: (result)=>{
 
-  //     },
-  //     fail: ()=>{},
-  //     complete: ()=>{}
-  //   });
-  // }
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+  }
 })

@@ -1,7 +1,7 @@
 <view>
   <view class="img" >
-    <!-- <image class='calendar-image' bindtap="FullScreenPreview" data-src="../../icon/image/calendar.png" mode="widthFix" src='../../icon/image/calendar.png'></image> -->
-        <image class='calendar-image' mode="widthFix" src='../../icon/image/calendar.png'></image>
+    <image class='calendar-image' bindtap="FullScreenPreview" data-src="../../icon/image/calendar.png" mode="widthFix" src='../../icon/image/calendar.png'></image>
+        <!-- <image class='calendar-image' mode="widthFix" src='../../icon/image/calendar.png'></image> -->
   </view>
   <!-- <button style='background:rgb(0,160,0);color:white' bindtap='showpicture'>保存</button> -->
 

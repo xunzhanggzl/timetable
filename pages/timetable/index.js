@@ -114,12 +114,12 @@ Page({
       // return m + "-" + d;
     }
     let days = [];
-    for (let i = 0; i < 133; i++) {
+    for (let i = 0; i < 140; i++) {
       days.push(GetDateStr(i))
     }
     wx.setStorageSync("days",days)
     let daysMonthAndDay = [];
-    for(let i = 0; i < 133; i ++) {
+    for(let i = 0; i < 140; i ++) {
       daysMonthAndDay.push(days[i].substring(5))
     }
     // storage 里的是2019-02-25带年份的

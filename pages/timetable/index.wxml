@@ -1,7 +1,7 @@
 <!--pages/timetable/index.wxml-->
 <view class="nav" style="margin-top:{{navH}}px">
   <view class="nav-flex btn" bindtap="OpenPopup">
-    <van-icon name="bars" />
+    <van-icon name="bars" size="50rpx" />
   </view>
   <view class="nav-flex title">第{{currentWeek}}周</view>
   <view class="nav-flex right"></view>

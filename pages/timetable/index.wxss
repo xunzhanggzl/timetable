@@ -9,6 +9,9 @@
 }
 .nav .btn{
   line-height: 80rpx;
+  box-sizing: border-box;
+  padding-left: 10rpx;
+  padding-top: 10rpx;
 }
 .nav .title{
   line-height: 80rpx;

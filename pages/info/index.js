@@ -27,8 +27,8 @@ Page({
     let exams = wx.getStorageSync("exams");
     if(that.data.isUpdate || (exams === null) || (exams == false)){
       util.getReq("exams", {}, function (res) {
-        // console.log('请求了');
         if (res['code'] === 0) {
+          console.log('请求了考试信息');
           console.info(res);
           let exams = [...res['data']['exams']];
           exams.forEach(item => {
@@ -59,28 +59,6 @@ Page({
 
       });
     }else{
-      // exams.forEach(item => {
-      //   let examTimeDay = item['time'];
-      //   let examTimeStart = item['time'];
-
-      //   examTimeDay = examTimeDay.substring(0, 10);
-      //   examTimeDay = examTimeDay.replace(/-/g, '/');
-
-      //   examTimeStart = examTimeStart.substring(11, 16);
-
-      //   let examTime = examTimeDay + " " + examTimeStart;
-      //   // console.log(examTime)
-
-      //   let openDate = new Date(examTime).getTime();
-      //   let day = Math.floor((openDate - new Date().getTime()) / (1000 * 60 * 60 * 24) + 1);
-      //   // console.log(day)
-      //   if (day >= 0) {
-      //     item.relese = "剩余" + day + "天";
-      //   } else {
-      //     item.relese = "已结束";
-      //   }
-
-      // });
       let exams = [...wx.getStorageSync("exams")];
       that.setData({ exams: exams });
     }
@@ -94,10 +72,11 @@ Page({
     let that = this;
     let records = wx.getStorageSync("records");
 
-    if (that.data.isUpdate || !(records === null) || (records == false)) {
+    if (that.data.isUpdate || (records === null) || (records == false)) {
       util.getReq("record", {}, function (res) {
         if (res['code'] === 0) {
           console.info(res);
+          console.log('请求了考试成绩');
           that.setData({ records: res['data']['records'] });
           wx.setStorageSync("records", res['data']['records']);
         }
@@ -117,7 +96,14 @@ Page({
       console.info("lastTime is null");
       return;
     }
+    let records = wx.getStorageSync("records");
+    let exams = wx.getStorageSync("exams"); 
     
+    if ((records === null) || (records == false) || (exams === null) || (exams == false)) {
+      this.setData({ isUpdate: true });
+      return;      
+    }
+
     if ((new Date().getTime() - lastTime) / (1000 * 60 * 60 * 8) >= 1) {
       // console.log("设置了超过一天重新请求")
       wx.setStorageSync("infoUpdate", new Date().getTime());

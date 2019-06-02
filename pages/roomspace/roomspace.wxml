@@ -101,9 +101,11 @@
     bindinput='bindinputFlat'
   /> -->
 
-  <view style='height:100rpx'></view>
 
-  <button bindtap='submit'>查询</button>
+  <view class="btn">
+    <van-button type="info" bindtap="submit">查询</van-button>  
+  </view>
+
 
   <view class="roomlist">
     <view class="title">

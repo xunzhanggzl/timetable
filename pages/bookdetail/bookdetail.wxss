@@ -1,0 +1,33 @@
+/* pages/bookdetail/bookdetail.wxss */
+.wrapper{
+    margin: 0 20rpx;
+    font-size: 30rpx;
+}
+.bookTitle{
+    display: flex;
+}
+.bookTitle .icon{
+    width: 10%;
+}
+.bookTitle .title{
+    font-size: 36rpx;
+}
+.bookLists{
+    display: flex;
+    flex-direction: column;
+}
+.bookLists .bookList{
+    border: 1px solid black;   
+    margin-bottom: 20rpx;
+}
+.bookLists .bookList>view{
+    display: flex;
+}
+.bookLists .bookList>view>view{
+    width: 50%;
+}
+
+.bookLists .bookList>view .left{
+    box-sizing: border-box;
+    padding-left: 6rpx;
+}

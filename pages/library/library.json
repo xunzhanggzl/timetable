@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "藏书查询",
+  "usingComponents": {
+    "van-button": "../../vant-weapp/button/index",
+    "van-toast": "../../vant-weapp/toast/index"
+  }
+}

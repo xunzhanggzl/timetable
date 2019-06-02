@@ -1,0 +1,35 @@
+<view class="wrapper">
+    <view class="section">
+        <view class="input">
+            <input placeholder="请输入书名" bindinput="inputChange"  focus="{{focus}}"/>
+        </view>
+        <view class="search">
+            <van-button type="info" size="normal" bindtap="search">搜索</van-button>
+        </view>
+    </view>
+    <!-- <van-toast id="van-toast" duration="300" /> -->
+    <view class="lists">
+        <block wx:for="{{content}}" wx:key="{{item}}">
+            <view class="list bg-ji" wx:if="{{index % 2 == 0}}" 
+                bindtap="showBookDetail"  data-marc="{{item.marcRecNo}}" data-title="{{item.title}}">
+                <view class="title">{{item.title}}</view>
+                <view class="author">作者：{{item.author}}</view>
+                <view class="callNo">藏书号：{{item.callNo}}</view>
+                <view class="docTypeName">类型：{{item.docTypeName}}</view>
+                <view class="publisher">出版社：{{item.publisher}}</view>
+                <view class="pubYear">出版日期：{{item.pubYear}}</view>
+            </view>
+
+            <view class="list bg-ou" wx:else
+                bindtap="showBookDetail"  data-marc="{{item.marcRecNo}}" data-title="{{item.title}}">
+                <view class="title">{{item.title}}</view>
+                <view class="author">作者：{{item.author}}</view>
+                <view class="callNo">藏书号：{{item.callNo}}</view>
+                <view class="docTypeName">类型：{{item.docTypeName}}</view>
+                <view class="publisher">出版社：{{item.publisher}}</view>
+                <view class="pubYear">出版日期：{{item.pubYear}}</view>
+            </view>
+        </block>
+
+    </view>
+</view>

@@ -30,6 +30,12 @@
         url="/pages/jwxt/index"
 
       />
+      <van-cell
+        title="统一身份认证登录"
+        is-link
+        url="/pages/identitylogin/identitylogin"
+
+      />
       <!-- <van-cell 
         title="设置"
         is-link

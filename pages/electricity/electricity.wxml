@@ -31,8 +31,18 @@
     <text class='docu-text'>寝室：</text>
     <input bindinput="bindinput" type='text' class='docu-input'></input>
   </view>
-  <view class="blank"></view>
-  <button class="choose-button" bindtap="submit">确定</button>
-  <button class="choose-button" bindtap="back">返回</button>
-  <text class="tips" >寝室号输入规则：\n1.桃一楼直接输入房间号，如：2031\n2.研1，2楼输入单元号-房间号，如：3-501\n3.其他楼栋，输入区域和房间号，如：B4051</text>
+
+  <view class="btn">
+    <van-button type="info" bindtap="submit">确定</van-button>  
+  </view>
+  
+
+  <view class="instruction">
+    <view class="title">寝室号输入规则:</view>
+    <view class="first">n1.桃一楼直接输入房间号，如：2031</view>
+    <view class="second">n2.研1，2楼输入单元号-房间号，如：3-501</view>
+    <view class="third">n3.其他楼栋，输入区域和房间号，如：B4051</view>
+  </view>
+
+  <view class="use">该功能暂不可用</view>
 </view>

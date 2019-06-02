@@ -1,6 +1,9 @@
 /**index.wxss**/
-.panel{
+.pandel{
   margin: 15rpx;
+}
+.panel-header-title{
+  font-size: 36rpx;
 }
 .panel-header-image{
   height: 50rpx;
@@ -15,6 +18,50 @@
   line-height: 80rpx;
 }
 
+.nav-list{
+  display: flex;
+  flex-wrap:wrap;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+
+.nav-list .nav{
+  width: 32%;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.nav .navigator-style{
+  width: 110rpx;
+  height: 110rpx;
+  position: relative;
+  
+}
+.nav .navigator-style image{
+  position: absolute;
+  width: 110rpx;
+  height: 110rpx;
+}
+.nav .wechat-text{
+  font-size: 24rpx;
+  height: 45rpx;
+  color: grey;
+}
+
+.balance{
+  font-size: 30rpx;
+  position: relative;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.balance .update{
+  position: absolute;
+  right: 90rpx;
+  top: 0rpx;
+}
 .panel-body{
   margin: 10rpx;
 }
@@ -44,22 +91,6 @@
   font-size: 30rpx;
 }
 
-.increase-distance{
-  height: 90rpx;
-}
-
-.navigator-style{
-  padding: 10px;
-  border-radius: 50%;
-  border: 1px solid  lightgrey;
-  width: 80rpx;
-  height: 80rpx;
-  margin-left: 30rpx;
-}
-.wechatapp-image{
-  width: 80rpx;
-  height: 80rpx;
-}
 
 .button-elec{
   width:300rpx;
@@ -109,12 +140,12 @@
   z-index: -1;
 }
 
-.wechat-text{
+/* .wechat-text{
   width: 150rpx;
   margin-left:-15px; 
   margin-top: 40rpx;
   color: grey;
-}
+} */
 
 .week-change{
   text-align: center;

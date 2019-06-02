@@ -1,0 +1,35 @@
+.wrapper{
+    margin: 0 20rpx;
+}
+.section{
+    width: 100%;
+    margin-bottom: 10rpx;
+}
+.section .input{
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 10rpx;
+}
+.section .search{
+    text-align: center;
+}
+
+.bg-ji{
+    /* background: #f0b7a4; */
+    background: #fff6be;
+}
+.bg-ou{
+    background: #E6F3F9;    
+}
+.lists{
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-direction: column; 
+}
+.lists .list{
+    font-size: 30rpx;
+    padding: 10rpx;
+}
+.list .title{
+    border-bottom: 1px solid black;
+}

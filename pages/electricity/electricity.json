@@ -4,6 +4,8 @@
     "van-switch-cell": "../../vant-weapp/switch-cell/index",
     "van-picker": "../../vant-weapp/picker/index",
     "van-popup": "../../vant-weapp/popup/index",
-    "van-cell": "../../vant-weapp/cell/index"
+    "van-cell": "../../vant-weapp/cell/index",
+    "van-button": "../../vant-weapp/button/index"
+
   }
 }

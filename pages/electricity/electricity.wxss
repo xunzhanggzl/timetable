@@ -2,10 +2,6 @@
   margin-top:10vh; 
 }
 
-.van-cell-shq{
-  
-}
-
 .close-picker{
   color: blue;
   text-align: right;
@@ -32,17 +28,22 @@
 
 }
 
-.blank{
-  height:10vh;
+.btn{
+  margin-top: 40rpx;
+  text-align: center;
 }
 
-.choose-button{
-  color: grey;
-  margin-top: 20rpx;
+.instruction{
+  margin: 30rpx;
+  font-size: 30rpx;
 }
 
-.tips{
-  font-size: 12px;
-  color: grey;
+.instruction .title{
+  font-size: 36rpx;
 }
 
+.use{
+  margin:30rpx;
+  font-size: 36rpx;
+  color: rgb(25, 137, 250);
+}

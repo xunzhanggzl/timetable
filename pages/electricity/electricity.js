@@ -66,66 +66,73 @@ Page({
   },
 
   submit:function(event){
+    wx.showToast({
+      title: '该功能暂不可用',
+      duration: 2000,
+      icon: 'none'
+    })
+    return;
+
     //打包信息发给index页面
     //检查是否有问题
-    var check = this.data.content;
+    // var check = this.data.content;
 
-    var right = true;
+    // var right = true;
 
-    if (check == '') {
-      wx.showToast({
-        title: '请填写宿舍号',
-        icon: 'none',
-      })
-      return false;
-    }
+    // if (check == '') {
+    //   wx.showToast({
+    //     title: '请填写宿舍号',
+    //     icon: 'none',
+    //   })
+    //   return false;
+    // }
 
-    //检查
-    if (this.data.typeIndex == 3 && this.data.typeIndex_c == 0){
+    // //检查
+    // if (this.data.typeIndex == 3 && this.data.typeIndex_c == 0){
 
-      var reg=/^[0-9]{4}$/;
-      right = reg.test(check);
-    } else if (this.data.typeIndex == 5 && (this.data.typeIndex_c == 0||    this.data.typeIndex_c == 1)){
+    //   var reg=/^[0-9]{4}$/;
+    //   right = reg.test(check);
+    // } else if (this.data.typeIndex == 5 && (this.data.typeIndex_c == 0||    this.data.typeIndex_c == 1)){
 
-      var reg=/^[0-9]-[0-9]{3}$/;
-      right = reg.test(check);
-    }else{
+    //   var reg=/^[0-9]-[0-9]{3}$/;
+    //   right = reg.test(check);
+    // }else{
 
-      var reg=/^[A-Za-z][0-9]{4}$/;
-      right = reg.test(check);
-    }
+    //   var reg=/^[A-Za-z][0-9]{4}$/;
+    //   right = reg.test(check);
+    // }
 
-    if(right==false){
-      wx.showToast({
-        title: '宿舍号有误',
-        icon:'none',
-      })
-      return false;
-    }
+    // if(right==false){
+    //   wx.showToast({
+    //     title: '宿舍号有误',
+    //     icon:'none',
+    //   })
+    //   return false;
+    // }
 
-    var content = this.data.content;
-    content=content.toUpperCase();
-    //打包传递(研究生楼传递的数据不同)
-    if (this.data.typeIndex == 5 && (this.data.typeIndex_c == 0 || this.data.typeIndex_c == 1)){
-      var elec_info = {
-        flat: this.data.typeName[0] + this.data.typeName_c[0],
-        room: content
-      };
-    }else{
-      var elec_info = {
-        flat: this.data.typeName[0] + this.data.typeName_c[0] + "楼",
-        room: content
-      };
-    }
-    //console.log(elec_info);
-    //保存到本地缓存中
-    wx.setStorageSync("elec_info", elec_info);
+    // var content = this.data.content;
+    // content=content.toUpperCase();
+    // //打包传递(研究生楼传递的数据不同)
+    // if (this.data.typeIndex == 5 && (this.data.typeIndex_c == 0 || this.data.typeIndex_c == 1)){
+    //   var elec_info = {
+    //     flat: this.data.typeName[0] + this.data.typeName_c[0],
+    //     room: content
+    //   };
+    // }else{
+    //   var elec_info = {
+    //     flat: this.data.typeName[0] + this.data.typeName_c[0] + "楼",
+    //     room: content
+    //   };
+    // }
+    // //console.log(elec_info);
+    // //保存到本地缓存中
+    // wx.setStorageSync("elec_info", elec_info);
     
 
-    wx.switchTab({
-      url: '/pages/index/index',
-      // url: '/pages/index/index',
-    })
+    // wx.switchTab({
+    //   url: '/pages/index/index',
+    //   // url: '/pages/index/index',
+    // })
 
   },
   back:function(){

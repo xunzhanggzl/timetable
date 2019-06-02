@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "图书详细信息",
+  "usingComponents": {
+    "van-icon": "../../vant-weapp/icon/index"
+  }
+}

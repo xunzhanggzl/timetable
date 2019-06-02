@@ -20,7 +20,10 @@
     "pages/electricity/electricity",
     "pages/timetable_detail/timetable_detail",
     "pages/roomspace/roomspace",
-    "pages/class_add/class_add"
+    "pages/class_add/class_add",
+    "pages/library/library",
+    "pages/bookdetail/bookdetail",
+    "pages/identitylogin/identitylogin"
   ],
   "tabBar": {
     "color": "#626567",

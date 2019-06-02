@@ -28,8 +28,8 @@ Page({
     if(that.data.isUpdate || (exams === null) || (exams == false)){
       util.getReq("exams", {}, function (res) {
         if (res['code'] === 0) {
-          console.log('请求了考试信息');
-          console.info(res);
+          // console.log('请求了考试信息');
+          // console.info(res);
           let exams = [...res['data']['exams']];
           exams.forEach(item => {
 
@@ -75,8 +75,8 @@ Page({
     if (that.data.isUpdate || (records === null) || (records == false)) {
       util.getReq("record", {}, function (res) {
         if (res['code'] === 0) {
-          console.info(res);
-          console.log('请求了考试成绩');
+          // console.info(res);
+          // console.log('请求了考试成绩');
           that.setData({ records: res['data']['records'] });
           wx.setStorageSync("records", res['data']['records']);
         }

@@ -1,0 +1,38 @@
+<!--pages/bookdetail/bookdetail.wxml-->
+<view class="wrapper">
+    <view class="bookTitle">
+        <view class="icon">
+            <van-icon name="label" size="50rpx"/>
+        </view>
+        <view class="title">{{title}}</view>
+    </view>
+
+    <view class="bookLists">
+        <view class="bookList" wx:for="{{content}}" wx:key="{{item}}">
+            <view class="suoshuhao">
+                <view class="left">索书号:</view>
+                <view class="right">{{item.suoshuhao}}</view>
+            </view>
+            <view class="tiaomahao">
+                <view class="left">条码号:</view>
+                <view class="right">{{item.tiaomahao}}</view>
+            </view>
+
+            <view class="nianjuanqi">
+                <view class="left">年卷期:</view>
+                <view class="right">{{item.nianjuanqi}}</view>
+            </view>
+
+
+            <view class="guancangdi">
+                <view class="left">馆藏地:</view>
+                <view class="right">{{item.guancangdi}}</view>
+            </view>
+            <view class="shukanzhuangtai">
+                <view class="left">书刊状态:</view>
+                <view class="right">{{item.shukanzhuangtai}}</view>
+            </view>
+
+        </view>
+    </view>
+</view>

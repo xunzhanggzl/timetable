@@ -13,7 +13,8 @@ Page({
     currentWeek:16,
     currentDay:4,
     weekName:"第一周",
-    elec:0
+    elec:0,
+    balance:"统一身份认证后可以查看"
   },
   //事件处理函数
   bindViewTap: function() {
@@ -23,6 +24,74 @@ Page({
   },
   onLoad:function(option){
     // this.getEleInfo();
+    this.getBalance();
+  },
+
+  getBalance(){
+    let strNew = wx.getStorageSync('balance') || '统一身份认证后可以查看';
+    this.setData({
+      balance: strNew
+    })
+  },
+
+  updateBalance(){
+    let username = wx.getStorageSync('identityusername');
+    let password = wx.getStorageSync('identitypassword');
+    let that = this;
+
+    if (this.data.balance === '统一身份认证后可以查看') {
+      // wx.showToast({
+      //   title: '登录后方可更新',
+      //   icon: 'none',
+      //   duration: 1000
+      // });
+      wx.showModal({
+        content: '登录后方可更新,是否立即登录',
+        success(res) {
+          if (res.confirm) {
+            // console.log('用户点击确定')
+            wx.navigateTo({
+              url: '/pages/identitylogin/identitylogin',
+            })
+          } else if (res.cancel) {
+            return;
+          }
+        }
+      })
+      return;
+    }
+    wx.showToast({
+      title: '正在更新中',
+      duration: 10000
+    })
+    wx.request({
+      url: 'https://liuh321.club/balance',
+      data: {
+        username: username,
+        password: password
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result) => {
+        console.log(result);
+        if (result['data']['code'] === 0) {
+          // wx.hideToast();
+          let str = result['data']['data'];
+          let index = str.indexOf('（');
+          let strNew = str.slice(0, index);
+          wx.setStorageSync("balance", strNew);
+        }
+        that.getBalance();
+      },
+      fail: () => {},
+      complete: () => {
+        wx.hideToast();
+      }
+    });
   },
 
   getEleInfo(){

@@ -59,6 +59,12 @@ Page({
 
   },
 
+  skip(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    })
+  },
+
   removeStore(){
     let storeStr = ["days", "kb", "infoUpdate", "exams", "records", "openDate", "year", "term", "currentWeek", "currentDay", "user", "balance", "identityusername", "identitypassword"];
     console.log(storeStr.length);

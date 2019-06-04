@@ -9,7 +9,8 @@ Page({
     records:[],
     exams:[],
     isUpdate: false,
-    showHideFlag:true
+    showHideExamFlag:true,
+    showHideRecordsFlag:true
   },
 
   /**
@@ -28,8 +29,8 @@ Page({
     if(that.data.isUpdate || (exams === null) || (exams == false)){
       util.getReq("exams", {}, function (res) {
         if (res['code'] === 0) {
-          // console.log('请求了考试信息');
-          // console.info(res);
+          console.log('请求了考试信息');
+          console.info(res);
           let exams = [...res['data']['exams']];
           exams.forEach(item => {
 
@@ -75,8 +76,8 @@ Page({
     if (that.data.isUpdate || (records === null) || (records == false)) {
       util.getReq("record", {}, function (res) {
         if (res['code'] === 0) {
-          // console.info(res);
-          // console.log('请求了考试成绩');
+          console.info(res);
+          console.log('请求了考试成绩');
           that.setData({ records: res['data']['records'] });
           wx.setStorageSync("records", res['data']['records']);
         }
@@ -104,6 +105,11 @@ Page({
       return;      
     }
 
+    if ((records.length !== 0 && this.data.records == false) || (exams.length !== 0 && this.data.exams == false)) {
+      this.setData({ isUpdate: true });
+      return;      
+    }
+
     if ((new Date().getTime() - lastTime) / (1000 * 60 * 60 * 8) >= 1) {
       // console.log("设置了超过一天重新请求")
       wx.setStorageSync("infoUpdate", new Date().getTime());
@@ -120,60 +126,51 @@ Page({
   /**
    点击显示或者隐藏已结束的考试
    */
-  showHideEnd(){
-    // console.log(this.data.showHideFlag)
-    // console.log(this.data.exams)
-    let all = [...wx.getStorageSync('exams')];
-    if (this.data.showHideFlag) {
-      const afterchange = all.filter((arr) => {
-        return arr.relese !== "已结束";
-      })
-      // console.log(this.data.exams)
-      // console.log(after)
+  showHideExam(){
+    // let all = [...wx.getStorageSync('exams')];
+    // if (this.data.showHideExamFlag) {
+    //   const afterchange = all.filter((arr) => {
+    //     return arr.relese !== "已结束";
+    //   })
+    //   this.setData({
+    //     exams: afterchange,
+    //     showHideExamFlag: false
+    //   })
+    // } else {
+    //   this.setData({
+    //     exams: all,
+    //     showHideExamFlag: true
+    //   })
+    // }
+
+    if (this.data.showHideExamFlag) {
       this.setData({
-        exams: afterchange,
-        showHideFlag: false
+        showHideExamFlag: false
       })
     } else {
       this.setData({
-        exams: all,
-        showHideFlag: true
+        showHideExamFlag: true
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  showHideRecords() {
+    if (this.data.showHideRecordsFlag) {
+      this.setData({
+        showHideRecordsFlag: false
+      })
+    } else {
+      this.setData({
+        showHideRecordsFlag: true
+      })
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    // let showHideFlag = !this.data.showHideFlag;
+    // let showHideExamFlag = !this.data.showHideExamFlag;
     wx.showNavigationBarLoading();
     wx.showToast({
       title: '加载中',
@@ -186,28 +183,9 @@ Page({
       this.getRecordInfo();
     }
     setTimeout(() => {
-      // this.getExamInfo();
-      // this.getRecordInfo();
-      // this.setData({
-      //   showHideFlag: showHideFlag
-      // })
-      // this.showHideEnd()
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1000);
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
+
 })

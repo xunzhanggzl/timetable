@@ -13,6 +13,12 @@
 .section .search{
     text-align: center;
 }
+.searchbook{
+    margin-right: 30rpx;
+}
+.mybook{
+    margin-left: 30rpx;
+}
 
 .bg-ji{
     /* background: #f0b7a4; */

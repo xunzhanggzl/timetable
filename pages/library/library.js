@@ -75,6 +75,12 @@ Page({
     })
   },
 
+  toMyBook(){
+    wx.navigateTo({
+      url: `../../pages/mybook/mybook`,
+    })
+  },
+
   showBookDetail(e) {
     // console.log(e);
     let marc = e.currentTarget.dataset.marc;

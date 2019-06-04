@@ -135,7 +135,7 @@
   
 
   <view class="btn">
-    <van-button type="primary" size="small" bindtap='storePicture'>保存</van-button>
+    <van-button type="primary" size="large" bindtap='storePicture'>保存</van-button>
   </view>
 
   <!-- <view style='height:100rpx'></view> -->

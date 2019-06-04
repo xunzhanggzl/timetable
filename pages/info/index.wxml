@@ -5,13 +5,13 @@
       <image class='panel-header-image' src='../../icon/exam.png'></image>
       <view class='panel-header-title'>
         最近考试
-        <button class="showHide" size="mini" bindtap="showHideEnd">
-          <text wx:if="{{!showHideFlag}}">显示</text>
-          <text wx:if="{{showHideFlag}}">隐藏</text>         
+        <button type="primary" plain size="mini" bindtap="showHideExam">
+          <text wx:if="{{!showHideExamFlag}}">显示</text>
+          <text wx:if="{{showHideExamFlag}}">隐藏</text>         
         </button>
       </view>
     </view>
-    <view class='panel-body'>
+    <view class='panel-body' hidden="{{!showHideExamFlag}}">
 
       <view wx:for="{{exams}}" wx:for-index="idx" wx:key="item" wx:for-item="item">
         <view class='exam'>
@@ -42,9 +42,14 @@
   <view class='panel'>
     <view class='panel-header'>
       <image class='panel-header-image' src='../../icon/record.png'></image>
-      <view class='panel-header-title'>考试成绩</view>
+      <view class='panel-header-title'>考试成绩
+        <button type="warn" plain size="mini" bindtap="showHideRecords">
+          <text wx:if="{{!showHideRecordsFlag}}">显示</text>
+          <text wx:if="{{showHideRecordsFlag}}">隐藏</text>         
+        </button>
+      </view>
     </view>
-    <view class='panel-body'>
+    <view class='panel-body'  hidden="{{!showHideRecordsFlag}}">
 
     <view wx:for="{{records}}" wx:for-index="idx" wx:key="item" wx:for-item="item">
           <view class='record'>

@@ -23,7 +23,8 @@
     "pages/class_add/class_add",
     "pages/library/library",
     "pages/bookdetail/bookdetail",
-    "pages/identitylogin/identitylogin"
+    "pages/identitylogin/identitylogin",
+    "pages/mybook/mybook"
   ],
   "tabBar": {
     "color": "#626567",

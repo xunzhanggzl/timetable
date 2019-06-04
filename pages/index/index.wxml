@@ -7,12 +7,12 @@
       <view class='panel-header-title'>今日课程</view>
     </view>
     <view class='panel-body'>
-      <view wx:for="{{subjects}}" wx:for-index="idx" wx:key="item" wx:for-item="item">
-        <view class='subject'>
+      <!-- <view wx:for="{{subjects}}" wx:for-index="idx" wx:key="item" wx:for-item="item"> -->
+        <view class='subject'  wx:for="{{subjects}}" wx:for-index="idx" wx:key="item" wx:for-item="item">
           <view class='subject-time'>
             {{item.showTime}}
           </view>
-          <view>
+          <view class="subject-detail">
             <view class='subject-name'>
               {{item.name}}
             </view>
@@ -22,8 +22,8 @@
             </view>
           </view>
         </view>
-        <view class='clear'></view>
-      </view>
+        <!-- <view class='clear'></view> -->
+      <!-- </view> -->
 
 
       <view wx:if="{{!hasSubject}}" style="padding-left:80rpx;font-size:30rpx;">今天没有课程哦</view>
@@ -138,7 +138,6 @@
         </navigator>
         <view class='wechat-text'>宿舍用电</view>
       </view>
-
     </view>
   </view>
 

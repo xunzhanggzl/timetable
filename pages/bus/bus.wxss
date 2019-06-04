@@ -83,7 +83,6 @@
 }
 
 .btn{
-  display: flex;
-  justify-content:center;
-  margin-bottom: 10rpx;
+  margin: 20rpx 20rpx 60rpx;
+  /* margin-bottom: 60rpx; */
 }

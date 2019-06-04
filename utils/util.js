@@ -107,8 +107,9 @@ function getReq(url, data, su, fa) {
 }
 
 function showError(errMsg) {
+  let str = errMsg || "请求失败";
   wx.showToast({
-    title: errMsg,
+    title: str,
     icon: 'none'
   })
 }

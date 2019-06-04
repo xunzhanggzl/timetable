@@ -36,18 +36,12 @@ Page({
     let marc = this.data.marc;
     let data = {};
     data.marc = marc;
-    util.getReq("book", data, function (res) {
+    util.getReq("book1", data, function (res) {
       if (res['code'] === 0) {
-        // console.log(res['data'])
-        let data = res['data'];
-        let len = data.length;
-        data.slice(1, len-2);
-        // console.log(data)
-        data = JSON.parse(data);
+        // console.log(res);
+        let data = [...res['data']];
         data.splice(0, 5);
-        // console.log(data);
         data = that.group(data, 5);
-        // console.log(data);
 
         let content = that.data.content;
         for(let i = 0; i < data.length; i ++) {

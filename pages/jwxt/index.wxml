@@ -29,7 +29,7 @@
 
 
 
-<view class="weui-cell weui-cell_input">
+<view class="weui-cell weui-cell_input number">
   <view class="weui-cell__hd">
     <view class="weui-label">学号</view>
   </view>
@@ -38,7 +38,7 @@
   </view>
 </view>
 
-<view class="weui-cell weui-cell_input">
+<view class="weui-cell weui-cell_input password">
   <view class="weui-cell__hd">
     <view class="weui-label">密码</view>
   </view>
@@ -47,4 +47,7 @@
   </view>
 </view>
 
-<button class="weui-btn submit" bindtap='formSubmit' type="primary" plain="true">登录</button>
+<view class="btn">
+  <van-button type="info" bindtap='formSubmit' class="login">登录</van-button>
+  <van-button type="warning" class="skip" bindtap="skip">跳过</van-button>
+</view>

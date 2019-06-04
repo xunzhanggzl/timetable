@@ -4,7 +4,9 @@
             <input placeholder="请输入书名" bindinput="inputChange"  focus="{{focus}}"/>
         </view>
         <view class="search">
-            <van-button type="info" size="normal" bindtap="search">搜索</van-button>
+            <van-button class="searchbook" type="info" size="normal" bindtap="search">搜索</van-button>
+            <van-button class="mybook" type="info" size="normal" bindtap="toMyBook">我的图书</van-button>
+
         </view>
     </view>
     <!-- <van-toast id="van-toast" duration="300" /> -->

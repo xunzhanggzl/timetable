@@ -65,7 +65,7 @@
 .panel-body{
   margin: 10rpx;
 }
-.subject-time{
+/* .subject-time{
   padding: 30rpx;
   float: left;
 }
@@ -81,10 +81,39 @@
 
 .subject{
   margin: 5rpx;
+} */
+
+.subject{
+  display: flex;
+  align-items:center;
+  margin-bottom: 14rpx;
 }
-.clear{
+.subject-time{
+  width: 30%;
+  box-sizing: border-box;
+  padding-left: 50rpx;
+  text-align: center;
+}
+.subject-detail{
+  width: 80%;
+}
+.subject-room-image{
+  height: 25rpx;
+  width: 25rpx;
+  float: left;
+  margin-right: 6rpx;
+  margin-top: 8rpx;
+
+}
+.subject-room{
+  font-size: 24rpx;
+}
+
+
+
+/* .clear{
   clear: both;
-}
+} */
 
 .wechat{
   text-align: center;

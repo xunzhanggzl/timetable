@@ -1,0 +1,26 @@
+<view class="wrapper">
+    <view class='head'>
+        <view class='userinfo-avatar'>
+            <navigator url="/pages/my/info">
+                <open-data type="userAvatarUrl"></open-data>
+            </navigator>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">学号</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput='bindUserNameInput' type="text" name="username" value="{{username}}" placeholder="请输入学号" />
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+            <view class="weui-label">密码</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" bindinput='bindPasswordInput' type="password" name="password" value="{{password}}" placeholder="请输入密码" />
+        </view>
+    </view>
+    <button class="weui-btn submit" bindtap='formSubmit' type="primary" plain="true">登录</button>
+</view>

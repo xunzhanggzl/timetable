@@ -1,7 +1,7 @@
 Page({
   data:{
     hasSubject:true,
-    detail:[]
+    detail:[],
   },
   onLoad:function(e){
     this.getDetailInfo(e.start,e.day);

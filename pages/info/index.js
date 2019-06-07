@@ -23,6 +23,16 @@ Page({
     this.getRecordInfo();
   },
 
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  // onShow: function () {
+  //   this.isUpdate();
+  //   // console.log(this.data.isUpdate)
+  //   this.getExamInfo();
+  //   this.getRecordInfo();
+  // },
+
   getExamInfo: function(){
     let that = this;
     let exams = wx.getStorageSync("exams");

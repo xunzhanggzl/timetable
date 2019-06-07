@@ -3,7 +3,10 @@
   <view class="nav-flex btn" bindtap="OpenPopup">
     <van-icon name="bars" size="50rpx" />
   </view>
-  <view class="nav-flex title">第{{currentWeek}}周</view>
+  <!-- <view class="nav-flex title" bindtap='OpenDialog'>第{{currentWeek}}周 -->
+  <view class="nav-flex title" bindtap="titlepush">第{{currentWeek}}周
+    <van-icon name="arrow-down" />
+  </view>
   <view class="nav-flex right"></view>
 </view>
 <van-popup
@@ -43,6 +46,25 @@
   />
 </van-dialog>
 
+  <scroll-view scroll-x="true" class="allweek" hidden="{{allweekflag}}"> 
+      <view class="btnx" wx:for="{{allweek}}" data-index="{{item.index}}" bindtap="allweekchange" wx:key="item">
+        <view class="btnxtitle">第<text>{{item.index}}</text>周</view>
+        <view class="btnxcontent">
+          <view wx:for="{{item.msg}}" wx:key="item.msg" class="kcb-item">
+            <view style="width:14rpx;height:14rpx;background:#00faac;margin-left:{{(item.day-1)*14}}rpx;margin-top:{{(item.start-1)*14}}rpx;border-radius:50%"></view>
+          </view>
+        </view>
+      </view>
+  </scroll-view>
+  
+<!-- <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex">
+  display: inline-block
+  <view style="background: red; width: 200px; height: 100px; display: inline-block"></view>
+  <view style="background: green; width: 200px; height: 100px; display: inline-block"></view>
+  <view style="background: blue; width: 200px; height: 100px; display: inline-block"></view>
+  <view style="background: yellow; width: 200px; height: 100px; display: inline-block"></view>
+</scroll-view> -->
+
 
 <view class="top">
   <view class="month">{{month}}月</view>
@@ -56,7 +78,7 @@
   </view>
 </view>
 <scroll-view scroll-y="true" class="scroll">
-  <view style="height:1100rpx;display:flex;">
+  <view style="height:1200rpx;display:flex;">
     <view style="color:#000;">
       <view wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}" class="left" wx:key="item">
         <text class="classSection">{{item}}</text>

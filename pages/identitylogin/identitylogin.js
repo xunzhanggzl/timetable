@@ -117,6 +117,24 @@ Page({
       complete: ()=>{}
     });
 
+    wx.request({
+      url: 'https://liuh321.club/book',
+      data: {
+        username: username,
+        password: password
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: 'GET',
+      dataType: 'json',
+      responseType: 'text',
+      success: (result) => {
+        console.log(result);
+      },
+      fail: () => {},
+      complete: () => {}
+    });
 
   },
   bindUserNameInput: function (e) {

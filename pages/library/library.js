@@ -76,9 +76,29 @@ Page({
   },
 
   toMyBook(){
-    wx.navigateTo({
-      url: `../../pages/mybook/mybook`,
-    })
+    let identityusername = wx.getStorageSync("identityusername") || null;
+    let identitypassword = wx.getStorageSync("identitypassword") || null;
+
+    if (identityusername === null) {
+      wx.showModal({
+        content: '登录后方可查看,是否立即登录',
+        success(res) {
+          if (res.confirm) {
+            // console.log('用户点击确定')
+            wx.navigateTo({
+              url: '/pages/identitylogin/identitylogin',
+            })
+          } else if (res.cancel) {
+            return;
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: `../../pages/mybook/mybook`,
+      })
+    }
+    
   },
 
   showBookDetail(e) {

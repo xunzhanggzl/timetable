@@ -23,5 +23,5 @@
         </view>
     </view>
     <button class="weui-btn submit" bindtap='formSubmit' type="primary" plain="true">登录</button>
-    <view class="prompt">初始密码是身份证后六位，和挂VPN的密码一样，登录后可在首页看到校园卡余额</view>
+    <view class="prompt">初始密码是身份证后六位，与挂VPN的密码一样，登录后可在首页看到校园卡余额，也可进入首页图书馆藏查看我的图书</view>
 </view>

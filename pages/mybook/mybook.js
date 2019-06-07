@@ -5,8 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username: "",
-    password: ""
   },
 
   /**
@@ -15,79 +13,6 @@ Page({
   onLoad: function (options) {
 
   },
-
-  formSubmit: function () {
-      let that = this;
-      if (this.data.username.length == 0) {
-        wx.showToast({
-          title: '用户名不能为空'
-        });
-        return;
-      }
-      if (this.data.password.length == 0) {
-        wx.showToast({
-          title: 'password能为空',
-        });
-        return;
-      }
-      // console.info(this.data.username + this.data.password);
-      let username = this.data.username;
-      let password = this.data.password;
-
-      wx.showToast({
-        title: '正在加载中',
-        duration: 10000
-
-      })
-
-      wx.request({
-        url: 'https://liuh321.club/book',
-        data: {
-          username: username,
-          password: password
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        method: 'GET',
-        dataType: 'json',
-        responseType: 'text',
-        success: (result) => {
-          console.log(result);
-          // if (result['data']['code'] === 0) {
-          //   let str = result['data']['data'];
-          //   let index = str.indexOf('（');
-          //   let strNew = str.slice(0, index);
-          //   wx.setStorageSync("balance", strNew);
-          //   wx.setStorageSync("identityusername", username);
-          //   wx.setStorageSync("identitypassword", password);
-
-          //   wx.reLaunch({
-          //     url: '/pages/index/index',
-          //   })
-          // } else {
-          //   wx.showToast({
-          //     title: "登录失败, 可能是账户密码错误",
-          //     icon: "none"
-          //   });
-          // }
-        },
-        fail: () => {},
-        complete: () => {}
-      });
-
-
-    },
-    bindUserNameInput: function (e) {
-      this.setData({
-        username: e.detail.value
-      });
-    },
-    bindPasswordInput: function (e) {
-      this.setData({
-        password: e.detail.value
-      });
-    },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

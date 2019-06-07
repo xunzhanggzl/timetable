@@ -1,5 +1,5 @@
 .pages{
-  
+  margin:30rpx;
 }
 
 .title-list{

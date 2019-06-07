@@ -36,12 +36,6 @@
         url="/pages/identitylogin/identitylogin"
 
       />
-      <van-cell
-        title="我的图书馆登录"
-        is-link
-        url="/pages/mybook/mybook"
-
-      />
       <!-- <van-cell 
         title="设置"
         is-link

@@ -7,10 +7,10 @@ Page({
     navH:0,
     popupShow:false,
     // colorArrays: ["#55efc4", "#81ecec", "#55efc4", "#fd79a8", "#74b9ff", "#55efc4", "#81ecec", "#fd79a8"],
-    colorArrays: ["#55efc4", "#81ecec", "#fd79a8", "#74b9ff", 
-                  "#f38181", "#fce38a", "#d6f7ad", "#95e1d3", 
-                  "#e94822", "#f2910a", "#efd510", "#f57170",
-                  "#7045ff", "#c768ff", "#ffaded"],
+    colorArrays: ["#ff2e63", "#ff8364", "#3490de", "#ff0592",
+                  "#6a7efc", "#ff7e67", "#a82ffc", "#7045ff",
+                  "#f33535", "#ff9234", "#ffaded", "#118df0",
+                  "#7ea6f4", "#17b978", "#34495e"],
     colorObj : {},
     wlist: [],
     currentWeek: 16,
@@ -27,7 +27,99 @@ Page({
     month: 2,
     days:[],
     currentweekday: [{ DayOfTheWeek: "周一" }, { DayOfTheWeek: "周二" }, { DayOfTheWeek: "周三" }, { DayOfTheWeek: "周四" },
-      { DayOfTheWeek: "周五" }, { DayOfTheWeek: "周六" }, { DayOfTheWeek: "周日" }]
+      { DayOfTheWeek: "周五" }, { DayOfTheWeek: "周六" }, { DayOfTheWeek: "周日" }],
+    allweek: [],
+    allweekflag:true
+  },
+
+  getAllWeek(){
+    // let arr = [];
+    // for(let i = 1; i < 21; i ++) {
+    //   let obj = {};
+    //   obj["index"] = i;
+    //   arr.push(obj);
+    // }
+    // this.setData({
+    //   allweek:arr
+    // })
+  },
+
+  allweekchange(e){
+    // console.log(e);
+    let index = e.currentTarget.dataset.index;
+    this.setData({
+      currentWeek: index,
+      weekName: "第" + (index) + "周"
+    });
+    // console.log(this.data.weekName);
+    wx.setNavigationBarTitle({
+      title: "第" + this.data.currentWeek + "周",
+    })
+    this.getTimeTableInfo();
+    this.getCurrentWeekDay();
+    this.gettheMonth();
+  },
+
+  titlepush(){
+    if (this.data.allweekflag === true) {
+      this.setData({
+        allweekflag:false
+      })
+    } else {
+      this.setData({
+        allweekflag: true
+      })
+    }
+  },
+
+  overtheDifficulty(){
+    let arrdata = [];
+    for (let i = 1; i < 21; i++) {
+      let obj = {};
+      obj["index"] = i;
+      obj["msg"] = [];
+      arrdata.push(obj);
+    }
+    // console.log(arrdata)
+    
+    let that = this;
+    let kbList = [...wx.getStorageSync("kb")] || [];
+    let arr = [];
+
+    let len = kbList.length;
+    for(let i = 0; i < len; i ++) {
+      let week_list = kbList[i].week_list;
+      let len1 = week_list.length;
+      for(let j = 0; j < len1; j ++){
+        let obj = {};
+        obj.weekList = week_list[j];
+        obj.day = kbList[i].day;
+        obj.start = (kbList[i].start+1)/2;
+        // console.log(obj.weekList)
+        arrdata[obj.weekList-1]["msg"].push(obj);
+        // arr.push(obj)
+      }
+    }
+    // console.log(arrdata)
+    this.setData({
+      allweek: arrdata
+    })
+
+    // console.log(arr);
+
+    // kbList.forEach(item => {
+    //   if (that.hasSubject(item['week_list'], that.data.currentWeek)) {
+    //     var subject = {}
+    //     subject.xqj = item['day'];
+    //     subject.skjc = item['start'];
+    //     subject.skcd = item['step'];
+    //     subject.kcmc = item['name'] + "@" + item['room'];
+    //     subject.id = item['id'];
+    //     arr.push(subject);
+    //   }
+
+    // });
+  
   },
 
   /*
@@ -193,6 +285,7 @@ Page({
   },
 
   onLoad: function (options) {
+    this.getAllWeek();
     this.setData({
       navH: app.globalData.navHeight
     })
@@ -206,10 +299,14 @@ Page({
     this.gettheMonth();
 
     this.setSameColor();
+
+    this.overtheDifficulty();
   },
+
   onClickRight: function () {
     console.log(this.data.weekName);
   },
+  
   getInfo: function () {
     let currentDay = wx.getStorageSync("currentDay") || 1;
     let currentWeek = wx.getStorageSync("currentWeek") || 1;
@@ -310,7 +407,6 @@ Page({
                 subject.skcd = item['step'];
                 subject.kcmc = item['name'] + "@" + item['room'];
                 subject.id = item['id'];
-                //不完善。。。
                 kbListCurWeek.push(subject);
               }
             })

@@ -131,12 +131,96 @@ Page({
       responseType: 'text',
       success: (result) => {
         console.log(result);
+        if (result['data']['code'] === 0) {
+          let account = [...result['data']['data']['account']];
+          let history = [...result['data']['data']['history']];
+          let list = [...result['data']['data']['list']];
+
+
+          if (account.length > 1) {
+            account.splice(0, 6);
+            account = that.group(account, 6);
+            let TotalAmount = account.pop();
+            TotalAmount = TotalAmount[0].trim();
+    
+            let newAccount = {
+              total:TotalAmount,
+              allArr:[]
+            };
+
+            for(let i = 0; i < account.length; i ++) {
+              let obj = {};
+              obj['time'] = account[i][0];
+              obj['type'] = account[i][1];
+              obj['refund'] = account[i][2];
+              obj['payment'] = account[i][3];
+              obj['method'] = account[i][4];
+              obj['number'] = account[i][5];
+              newAccount['allArr'].push(obj);
+            }
+            console.log(newAccount)
+            wx.setStorageSync('account', newAccount);
+          } 
+
+          if (history.length > 1) {
+            history.splice(0, 7);
+            history = that.group(history, 7);
+            let newHistory = [];
+            for (let i = 0; i < history.length; i++) {
+              let obj = {};
+              obj['ind'] = history[i][0];
+              obj['barcode'] = history[i][1];
+              obj['title'] = history[i][2];
+              obj['author'] = history[i][3];
+              obj['borrowtime'] = history[i][4];
+              obj['returntime'] = history[i][5];
+              obj['place'] = history[i][6];
+
+              newHistory.push(obj);
+            }
+            wx.setStorageSync('history', newHistory);
+          }
+
+          if (list.length > 4) {
+            list.splice(0, 8);
+            list = that.group(list, 8);
+
+            let newList = [];
+
+            for (let i = 0; i < list.length; i++) {
+              let obj = {};
+              obj['barcode'] = list[i][0];
+              obj['title'] = list[i][1];
+              obj['borrowtime'] = list[i][2];
+              obj['returntime'] = list[i][3];
+              obj['renewamount'] = list[i][4];
+              obj['place'] = list[i][5];
+              obj['enclosure'] = list[i][6];
+              obj['renew'] = list[i][7];
+              newList.push(obj);
+            }
+            console.log(newList);
+            wx.setStorageSync('list', newList);
+          }
+          
+        }
+        
       },
       fail: () => {},
       complete: () => {}
     });
 
   },
+
+  group(array, subGroupLength) {
+    let index = 0;
+    let newArray = [];
+    while (index < array.length) {
+      newArray.push(array.slice(index, index += subGroupLength));
+    }
+    return newArray;
+  },
+
   bindUserNameInput: function (e) {
     this.setData({
       username: e.detail.value

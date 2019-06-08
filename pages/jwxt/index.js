@@ -66,7 +66,7 @@ Page({
   },
 
   removeStore(){
-    let storeStr = ["days", "kb", "infoUpdate", "exams", "records", "openDate", "year", "term", "currentWeek", "currentDay", "user", "balance", "identityusername", "identitypassword"];
+    let storeStr = ["days", "kb", "infoUpdate", "exams", "records", "openDate", "year", "term", "currentWeek", "currentDay", "user", "balance", "identityusername", "identitypassword", "history", "account", "list"];
     console.log(storeStr.length);
     for(let i = 0; i < storeStr.length; i ++) {
       wx.removeStorageSync(storeStr[i]);

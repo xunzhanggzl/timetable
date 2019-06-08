@@ -1,1 +1,76 @@
 /* pages/identitylogin/identitylogin.wxss */
+.wrapper{
+    margin: 20rpx;
+    font-size: 30rpx;
+}
+
+.list{
+    margin-top: 10rpx;
+}
+.list .listDetail{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;   
+    margin-bottom: 10rpx;
+
+}
+.list .listDetail>view{
+    display: flex;
+}
+.list .listDetail>view>.left{
+    width: 30%;
+}
+.list .listDetail>view>.right{
+    width: 70%;
+}
+
+.account{
+    margin-top: 10rpx;
+}
+.account .total{
+    font-size: 30rpx;
+}
+.account .accountDetail{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;   
+    margin-bottom: 10rpx;
+
+}
+.account .accountDetail>view{
+    display: flex;
+}
+.account .accountDetail>view>.left{
+    width: 40%;
+}
+.account .accountDetail>view>.right{
+    width: 60%;
+}
+.account .total{
+    text-indent: 2em;
+}
+
+.history{
+    margin-top: 10rpx;
+}
+.history .historyDetail{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;   
+    margin-bottom: 10rpx;
+}
+.history .historyDetail>view{
+    display: flex;
+}
+.history .historyDetail>view>.left{
+    width: 30%;
+}
+.history .historyDetail>view>.right{
+    width: 70%;
+}
+
+.btn{
+    margin-top: 20rpx;
+    text-align: center;
+}
+

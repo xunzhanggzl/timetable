@@ -1,3 +1,111 @@
 <view class="wrapper">
-    
+    <van-tabs type="card">
+        <van-tab title="当前借阅">
+            <view class="list" wx:if="{{listFlag}}">
+                <view class="listDetail" wx:for="{{list}}" wx:key="item">
+                    <view class="ind">
+                        <view class="left">条码号</view>
+                        <view class="right">{{item.barcode}}</view>
+                    </view>
+                    <view class="barcode">
+                        <view class="left">书名</view>
+                        <view class="right">{{item.title}}</view>
+                    </view>
+                    <view class="title">
+                        <view class="left">借阅日期</view>
+                        <view class="right">{{item.borrowtime}}</view>
+                    </view>
+                    <view class="author">
+                        <view class="left">应还日期</view>
+                        <view class="right">{{item.returntime}}</view>
+                    </view>
+                    <view class="place">
+                        <view class="left">馆藏地</view>
+                        <view class="right">{{item.place}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="list" wx:else>
+                <view class="listnone">您的当前借阅为空</view>
+            </view>
+        </van-tab>
+        <van-tab title="账目清单">
+            <view class="account" wx:if="{{accountFlag}}">
+                <view class="accountDetail" wx:for="{{account.allArr}}" wx:key="item">
+                    <view class="time">
+                        <view class="left">结算时间</view>
+                        <view class="right">{{item.time}}</view>
+                    </view>
+                    <view class="type">
+                        <view class="left">结算项目</view>
+                        <view class="right">{{item.type}}</view>
+                    </view>
+                    <view class="refund">
+                        <view class="left">退款</view>
+                        <view class="right">{{item.refund}}</view>
+                    </view>
+                    <view class="payment">
+                        <view class="left">缴款</view>
+                        <view class="right">{{item.payment}}</view>
+                    </view>
+                    <view class="method">
+                        <view class="left">结算方式</view>
+                        <view class="right">{{item.method}}</view>
+                    </view>
+                    <view class="number">
+                        <view class="left">票据号</view>
+                        <view class="right">{{item.number}}</view>
+                    </view>
+                </view>
+                <view class="total">{{account.total}}</view>
+            </view>
+            <view class="account" wx:else>
+                <view class="listnone">您的账目清单为空</view>
+            </view>
+        </van-tab>
+        <van-tab title="历史借阅">
+            <view class="history" wx:if="{{historyFlag}}">
+                <view class="historyDetail" wx:for="{{history}}" wx:key="item">
+                    <view class="ind">
+                        <view class="left">索引</view>
+                        <view class="right">{{item.ind}}</view>
+                    </view>
+                    <view class="barcode">
+                        <view class="left">条码号</view>
+                        <view class="right">{{item.barcode}}</view>
+                    </view>
+                    <view class="title">
+                        <view class="left">书名</view>
+                        <view class="right">{{item.title}}</view>
+                    </view>
+                    <view class="author">
+                        <view class="left">作者</view>
+                        <view class="right">{{item.author}}</view>
+                    </view>
+                    <view class="borrowtime">
+                        <view class="left">借阅日期</view>
+                        <view class="right">{{item.borrowtime}}</view>
+                    </view>
+                    <view class="returntime">
+                        <view class="left">归还日期</view>
+                        <view class="right">{{item.returntime}}</view>
+                    </view>
+                    <view class="place">
+                        <view class="left">馆藏地</view>
+                        <view class="right">{{item.place}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="history" wx:else>
+                <view class="historynone">
+                    您的历史借阅为空
+                </view>
+            </view>
+        </van-tab>
+        
+    </van-tabs>
+
+    <view class="btn">
+        <van-button type="info" bindtap="updateMyBook">更新</van-button>
+    </view>
 </view>

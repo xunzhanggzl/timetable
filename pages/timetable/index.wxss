@@ -41,11 +41,11 @@
 
 .allweek{
   white-space: nowrap;
-  background: #fffde8;
+  background: #FFFCE3;
 }
 .allweek .btnx{
   display: inline-block;
-  background-color: #b7fbff;
+  background-color: #C0EAFA;
   margin-right: 20rpx;
   margin-left: 20rpx;
   width: 100rpx;

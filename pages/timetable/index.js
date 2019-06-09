@@ -6,11 +6,9 @@ Page({
   data: {
     navH:0,
     popupShow:false,
-    // colorArrays: ["#55efc4", "#81ecec", "#55efc4", "#fd79a8", "#74b9ff", "#55efc4", "#81ecec", "#fd79a8"],
-    colorArrays: ["#ff2e63", "#ff8364", "#3490de", "#ff0592",
-                  "#6a7efc", "#ff7e67", "#a82ffc", "#7045ff",
-                  "#f33535", "#ff9234", "#ffaded", "#118df0",
-                  "#7ea6f4", "#17b978", "#34495e"],
+    colorArrays: ["#7D5BE6", "#1EC0FF", "#F9C00C", "#F68657", "#E03C8A",
+                  "#1492E6", "#41D3BD", "#EA5E94", "#2680EB", "#02B6C5", 
+                  "#00AA90", "#0089A7", "#FFB11B", "#BCD79O", "#DB4D6D"],
     colorObj : {},
     wlist: [],
     currentWeek: 16,
@@ -29,19 +27,7 @@ Page({
     currentweekday: [{ DayOfTheWeek: "周一" }, { DayOfTheWeek: "周二" }, { DayOfTheWeek: "周三" }, { DayOfTheWeek: "周四" },
       { DayOfTheWeek: "周五" }, { DayOfTheWeek: "周六" }, { DayOfTheWeek: "周日" }],
     allweek: [],
-    allweekflag:true
-  },
-
-  getAllWeek(){
-    // let arr = [];
-    // for(let i = 1; i < 21; i ++) {
-    //   let obj = {};
-    //   obj["index"] = i;
-    //   arr.push(obj);
-    // }
-    // this.setData({
-    //   allweek:arr
-    // })
+    allweekflag:true,
   },
 
   allweekchange(e){
@@ -104,22 +90,6 @@ Page({
     this.setData({
       allweek: arrdata
     })
-
-    // console.log(arr);
-
-    // kbList.forEach(item => {
-    //   if (that.hasSubject(item['week_list'], that.data.currentWeek)) {
-    //     var subject = {}
-    //     subject.xqj = item['day'];
-    //     subject.skjc = item['start'];
-    //     subject.skcd = item['step'];
-    //     subject.kcmc = item['name'] + "@" + item['room'];
-    //     subject.id = item['id'];
-    //     arr.push(subject);
-    //   }
-
-    // });
-  
   },
 
   /*
@@ -285,7 +255,6 @@ Page({
   },
 
   onLoad: function (options) {
-    this.getAllWeek();
     this.setData({
       navH: app.globalData.navHeight
     })
@@ -326,48 +295,6 @@ Page({
       copyWeek: currentWeek
     });
   },
-
-  /*  getData: function() {
-      let that = this;
-      let kbList = wx.getStorageSync("kb") || [];
-      console.info(kbList.length);
-      if(kbList.length > 0){
-        let kbListCurWeek = [];
-        kbList.forEach(item => {
-          if (that.hasSubject(item['week_list'], that.data.currentWeek)) {
-            var subject = {}
-            subject.xqj = item['day'];
-            subject.skjc = item['start'];
-            subject.skcd = item['step'];
-            subject.kcmc = item['name'] + "@" + item['room'];
-            kbListCurWeek.push(subject);
-          }
-        });
-        that.setData({ wlist: kbListCurWeek });
-      }else{
-        util.getReq("kb", {}, function (res) {
-          console.info(res);
-          if (res['code'] === 0) {
-            wx.setStorageSync("kb", res['data']['timetable']);
-            let kbList = res['data']['timetable'];
-            let kbListCurWeek = [];
-            kbList.forEach(item => {
-              if (that.hasSubject(item['week_list'], that.data.currentWeek)) {
-                var subject = {}
-                subject.xqj = item['day'];
-                subject.skjc = item['start'];
-                subject.skcd = item['step'];
-                subject.kcmc = item['name'] + "@" + item['room'];
-                kbListCurWeek.push(subject);
-              }
-            });
-            that.setData({ wlist: kbListCurWeek });
-          }
-        });
-      }
-    },
-
-  */
 
   getTimeTableInfo: function () {
     let that = this;
@@ -513,7 +440,6 @@ Page({
 
   },
   onPullDownRefresh: function () {
-    // this.getData();
     wx.showNavigationBarLoading();
     wx.showToast({
       title: '加载中',

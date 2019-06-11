@@ -8,7 +8,7 @@ Page({
     popupShow:false,
     colorArrays: ["#7D5BE6", "#1EC0FF", "#F9C00C", "#F68657", "#E03C8A",
                   "#1492E6", "#41D3BD", "#EA5E94", "#2680EB", "#02B6C5", 
-                  "#00AA90", "#0089A7", "#FFB11B", "#BCD79O", "#DB4D6D"],
+                  "#00AA90", "#0089A7", "#FFB11B", "#8CD79O", "#DB4D6D"],
     colorObj : {},
     wlist: [],
     currentWeek: 16,

@@ -4,19 +4,22 @@
     font-size: 30rpx;
 }
 
-.list{
+/* 公共部分 */
+.category{
     margin-top: 10rpx;
 }
-.list .listDetail{
+.category .detail{
     display: flex;
     flex-direction: column;
     border: 1px solid black;   
     margin-bottom: 10rpx;
-
 }
-.list .listDetail>view{
+.category .detail>view{
     display: flex;
 }
+
+
+/* list 部分 */
 .list .listDetail>view>.left{
     width: 30%;
 }
@@ -24,21 +27,9 @@
     width: 70%;
 }
 
-.account{
-    margin-top: 10rpx;
-}
+/* account 部分 */
 .account .total{
     font-size: 30rpx;
-}
-.account .accountDetail{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;   
-    margin-bottom: 10rpx;
-
-}
-.account .accountDetail>view{
-    display: flex;
 }
 .account .accountDetail>view>.left{
     width: 40%;
@@ -50,18 +41,8 @@
     text-indent: 2em;
 }
 
-.history{
-    margin-top: 10rpx;
-}
-.history .historyDetail{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;   
-    margin-bottom: 10rpx;
-}
-.history .historyDetail>view{
-    display: flex;
-}
+
+/* history 部分 */
 .history .historyDetail>view>.left{
     width: 30%;
 }
@@ -69,6 +50,7 @@
     width: 70%;
 }
 
+/* btn 部分 */
 .btn{
     margin-top: 20rpx;
     text-align: center;

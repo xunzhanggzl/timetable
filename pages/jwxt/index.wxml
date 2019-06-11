@@ -27,27 +27,29 @@
   </view>
 </view>
 
+<view class="content">
 
+  <view class="studentId box">
+    <view class="left">
+      学号
+    </view>
+    <view class="right">
+      <input class="" bindinput='bindUserNameInput' type="text" name="username" value="{{username}}" placeholder="请输入学号" />
+    </view>
+  </view>
 
-<view class="weui-cell weui-cell_input number">
-  <view class="weui-cell__hd">
-    <view class="weui-label">学号</view>
+  <view class="studentPassword box">
+    <view class="left">
+      密码
+    </view>
+    <view class="right">
+      <input class="" bindinput='bindPasswordInput' type="password" name="password" value="{{password}}" placeholder="请输入教务密码" />
+    </view>
   </view>
-  <view class="weui-cell__bd">
-    <input class="weui-input" bindinput='bindUserNameInput' type="text" name="username" value="{{username}}" placeholder="请输入学号" />
-  </view>
-</view>
 
-<view class="weui-cell weui-cell_input password">
-  <view class="weui-cell__hd">
-    <view class="weui-label">密码</view>
+  <view class="btn">
+    <button bindtap='formSubmit' class="login">登录</button>
+    <button bindtap="skip" class="skip">跳过</button>
   </view>
-  <view class="weui-cell__bd">
-    <input class="weui-input" bindinput='bindPasswordInput' type="password" name="password" value="{{password}}" placeholder="请输入教务密码" />
-  </view>
-</view>
 
-<view class="btn">
-  <van-button type="info" bindtap='formSubmit' class="login">登录</van-button>
-  <van-button type="warning" class="skip" bindtap="skip">跳过</van-button>
 </view>

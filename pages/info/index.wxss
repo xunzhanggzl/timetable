@@ -19,6 +19,9 @@
   line-height: 80rpx;
   position: relative;
 }
+.panel-header .panel-header-title{
+  font-size: 36rpx;
+}
 .panel-header .panel-header-title button{
   position: absolute;
   right: 20rpx;

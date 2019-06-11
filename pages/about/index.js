@@ -22,29 +22,29 @@ Page({
     })
   },
 
-  saveqq(){
-    wx.previewImage({
-      // current: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg',
-      urls: ['https://s2.ax1x.com/2019/06/08/VDC3AH.png'],
-      success: (result) => {
+  // saveqq(){
+  //   wx.previewImage({
+  //     // current: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg',
+  //     urls: ['https://s2.ax1x.com/2019/06/08/VDC3AH.png'],
+  //     success: (result) => {
 
-      },
-      fail: () => {},
-      complete: () => {}
-    });
-  },
+  //     },
+  //     fail: () => {},
+  //     complete: () => {}
+  //   });
+  // },
 
-  savewx(){
-    wx.previewImage({
-      // current: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg',
-      urls: ['https://s2.ax1x.com/2019/06/08/VDCrNj.jpg'],
-      success: (result) => {
+  // savewx(){
+  //   wx.previewImage({
+  //     // current: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1560955273,4108460138&fm=26&gp=0.jpg',
+  //     urls: ['https://s2.ax1x.com/2019/06/08/VDCrNj.jpg'],
+  //     success: (result) => {
 
-      },
-      fail: () => {},
-      complete: () => {}
-    });
-  },
+  //     },
+  //     fail: () => {},
+  //     complete: () => {}
+  //   });
+  // },
 
   onLoad: function () {
     this.setData({

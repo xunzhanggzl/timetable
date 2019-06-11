@@ -1,8 +1,8 @@
 <view class="wrapper">
     <van-tabs type="card">
         <van-tab title="当前借阅">
-            <view class="list" wx:if="{{listFlag}}">
-                <view class="listDetail" wx:for="{{list}}" wx:key="item">
+            <view class="list category" wx:if="{{listFlag}}">
+                <view class="listDetail detail" wx:for="{{list}}" wx:key="item">
                     <view class="ind">
                         <view class="left">条码号</view>
                         <view class="right">{{item.barcode}}</view>
@@ -25,13 +25,13 @@
                     </view>
                 </view>
             </view>
-            <view class="list" wx:else>
+            <view class="list category" wx:else>
                 <view class="listnone">您的当前借阅为空</view>
             </view>
         </van-tab>
         <van-tab title="账目清单">
-            <view class="account" wx:if="{{accountFlag}}">
-                <view class="accountDetail" wx:for="{{account.allArr}}" wx:key="item">
+            <view class="account category" wx:if="{{accountFlag}}">
+                <view class="accountDetail detail" wx:for="{{account.allArr}}" wx:key="item">
                     <view class="time">
                         <view class="left">结算时间</view>
                         <view class="right">{{item.time}}</view>
@@ -59,13 +59,13 @@
                 </view>
                 <view class="total">{{account.total}}</view>
             </view>
-            <view class="account" wx:else>
+            <view class="account category" wx:else>
                 <view class="listnone">您的账目清单为空</view>
             </view>
         </van-tab>
         <van-tab title="历史借阅">
-            <view class="history" wx:if="{{historyFlag}}">
-                <view class="historyDetail" wx:for="{{history}}" wx:key="item">
+            <view class="history category" wx:if="{{historyFlag}}">
+                <view class="historyDetail detail" wx:for="{{history}}" wx:key="item">
                     <view class="ind">
                         <view class="left">索引</view>
                         <view class="right">{{item.ind}}</view>
@@ -96,7 +96,7 @@
                     </view>
                 </view>
             </view>
-            <view class="history" wx:else>
+            <view class="history category" wx:else>
                 <view class="historynone">
                     您的历史借阅为空
                 </view>

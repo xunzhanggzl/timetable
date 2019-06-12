@@ -4,8 +4,11 @@ var app = getApp();
 
 Page({
   data: {
+    // wxml的margin-top相关
     navH:0,
+    // 添加课程之类的功能显示与否
     popupShow:false,
+    // 各个课程的颜色
     colorArrays: ["#7D5BE6", "#1EC0FF", "#F9C00C", "#F68657", "#E03C8A",
                   "#1492E6", "#41D3BD", "#EA5E94", "#2680EB", "#02B6C5", 
                   "#00AA90", "#0089A7", "#FFB11B", "#8CD79O", "#DB4D6D"],
@@ -23,13 +26,100 @@ Page({
     classTimestart: ["08:00", "08:55", "10:15", "11:10", "14:00", "14:55", "16:15", "17:10", "19:00", "19:55"],
     classTimeend: ["08:50", "09:45", "11:05", "12:00", "14:50", "15:45", "17:05", "18:00", "19:50", "20:45"],
     month: 2,
+    // 这一学期学期开始到学期末的日期
     days:[],
     currentweekday: [{ DayOfTheWeek: "周一" }, { DayOfTheWeek: "周二" }, { DayOfTheWeek: "周三" }, { DayOfTheWeek: "周四" },
       { DayOfTheWeek: "周五" }, { DayOfTheWeek: "周六" }, { DayOfTheWeek: "周日" }],
+
+    // 导航周的相关数据
     allweek: [],
+    // 显示或隐藏导航周flag
     allweekflag:true,
   },
 
+  onLoad: function (options) {
+    //navH 获取不同手机系统的导航高度,在app.js中有相关代码
+    this.setData({
+      navH: app.globalData.navHeight
+    })
+
+    console.log('onLoad');
+    this.getInfo();
+    this.getTimeTableInfo();
+
+    this.getTermDay();
+    this.getCurrentWeekDay();
+    this.gettheMonth();
+
+    this.setSameColor();
+
+    this.navChoiceWeek();
+  },
+
+  /* 
+    点击显示或隐藏导航周
+  */
+  titlepush() {
+    if (this.data.allweekflag === true) {
+      this.setData({
+        allweekflag: false
+      })
+    } else {
+      this.setData({
+        allweekflag: true
+      })
+    }
+  },
+
+  /* 
+    点击正中央标题，显示导航周
+  */
+  navChoiceWeek() {
+    let arrdata = [];
+    for (let i = 1; i < 21; i++) {
+      let obj = {};
+      obj["index"] = i;
+      obj["msg"] = [];
+      arrdata.push(obj);
+    }
+    // console.log(arrdata)
+
+    let that = this;
+    let kbList = [...wx.getStorageSync("kb")] || [];
+    let arr = [];
+
+    let len = kbList.length;
+    for (let i = 0; i < len; i++) {
+      // 得到课程涉及的所有周
+      let week_list = kbList[i].week_list;
+      let len1 = week_list.length;
+      for (let j = 0; j < len1; j++) {
+        let obj = {};
+        obj.weekList = week_list[j];
+        obj.day = kbList[i].day;
+        obj.start = (kbList[i].start + 1) / 2;
+        arrdata[obj.weekList - 1]["msg"].push(obj);
+        // 如果是4节连课，比如实验课
+        if (kbList[i].step === 4) {
+          let obj2 = {};
+          obj2.weekList = week_list[j];
+          obj2.day = kbList[i].day;
+          obj2.start = (kbList[i].start + 3) / 2;
+          arrdata[obj.weekList - 1]["msg"].push(obj2);
+        }
+        // console.log(kbList[i])
+        // arr.push(obj)
+      }
+    }
+    // console.log(arrdata)
+    this.setData({
+      allweek: arrdata
+    })
+  },
+  
+  /* 
+    导航周点击通过index切换周
+  */
   allweekchange(e){
     // console.log(e);
     let index = e.currentTarget.dataset.index;
@@ -46,54 +136,9 @@ Page({
     this.gettheMonth();
   },
 
-  titlepush(){
-    if (this.data.allweekflag === true) {
-      this.setData({
-        allweekflag:false
-      })
-    } else {
-      this.setData({
-        allweekflag: true
-      })
-    }
-  },
-
-  overtheDifficulty(){
-    let arrdata = [];
-    for (let i = 1; i < 21; i++) {
-      let obj = {};
-      obj["index"] = i;
-      obj["msg"] = [];
-      arrdata.push(obj);
-    }
-    // console.log(arrdata)
-    
-    let that = this;
-    let kbList = [...wx.getStorageSync("kb")] || [];
-    let arr = [];
-
-    let len = kbList.length;
-    for(let i = 0; i < len; i ++) {
-      let week_list = kbList[i].week_list;
-      let len1 = week_list.length;
-      for(let j = 0; j < len1; j ++){
-        let obj = {};
-        obj.weekList = week_list[j];
-        obj.day = kbList[i].day;
-        obj.start = (kbList[i].start+1)/2;
-        // console.log(obj.weekList)
-        arrdata[obj.weekList-1]["msg"].push(obj);
-        // arr.push(obj)
-      }
-    }
-    // console.log(arrdata)
-    this.setData({
-      allweek: arrdata
-    })
-  },
 
   /*
-    相同颜色相同课程
+    为相同课程设置相同颜色，根据其课程 id 对应的
   */
   setSameColor(){
     let ids = [];
@@ -125,19 +170,24 @@ Page({
     })
   },
   
+  // 点击关闭，与OpenPopup相对应
   onClosePop(){
     this.setData({
       popupShow: false
     });
   },
 
+  /*
+    点击左上角显示相应功能
+   */
   OpenPopup(){
     this.setData({
       popupShow: true
     });
   },
+
   /*
-    获取月份
+    获取当前月份
   */
   gettheMonth(){
     let currentweekday = this.data.currentweekday[0]["riqi"];
@@ -176,6 +226,7 @@ Page({
       // return m + "-" + d;
     }
     let days = [];
+    // 第1周到第20周 140 天
     for (let i = 0; i < 140; i++) {
       days.push(GetDateStr(i))
     }
@@ -240,6 +291,9 @@ Page({
 
   },
 
+  /*
+    返回当前周
+  */
   returnCurrentWeek: function () {
     this.setData({
       currentWeek: this.data.copyWeek,
@@ -254,27 +308,8 @@ Page({
     this.gettheMonth();
   },
 
-  onLoad: function (options) {
-    this.setData({
-      navH: app.globalData.navHeight
-    })
+  
 
-    console.log('onLoad');
-    this.getInfo();
-    this.getTimeTableInfo();
-
-    this.getTermDay();
-    this.getCurrentWeekDay();
-    this.gettheMonth();
-
-    this.setSameColor();
-
-    this.overtheDifficulty();
-  },
-
-  onClickRight: function () {
-    console.log(this.data.weekName);
-  },
   
   getInfo: function () {
     let currentDay = wx.getStorageSync("currentDay") || 1;
@@ -296,6 +331,9 @@ Page({
     });
   },
 
+  /* 
+    获取课表信息
+  */
   getTimeTableInfo: function () {
     let that = this;
     let kb = wx.getStorageSync("kb") || null;
@@ -386,10 +424,11 @@ Page({
       });
       // console.log(that.data.wlist)
     }
-
-
   },
 
+  /* 
+    课表信息更新
+  */
   isUpdate: function () {
     let lastTime = wx.getStorageSync("TimeTableUpdate") || null;
     if (lastTime == null) {
@@ -421,6 +460,9 @@ Page({
     return false;
   },
 
+  /*
+    显示单个课程的详细信息
+  */
   showCardView: function (e) {
     //console.log(e);
     wx.navigateTo({
@@ -429,6 +471,9 @@ Page({
 
   },
 
+  /*
+    跳转到添加课程页
+  */
   add_class: function () {
     wx.navigateTo({
       url: '../../pages/class_add/class_add'
@@ -436,9 +481,9 @@ Page({
 
   },
 
-  onShareAppMessage: function () {
-
-  },
+  /* 
+    下拉刷新
+  */
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading();
     wx.showToast({

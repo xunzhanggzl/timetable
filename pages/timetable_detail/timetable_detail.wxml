@@ -1,13 +1,26 @@
 <view class="pages">
   <view class='detail-info' wx:for='{{detail}}' wx:key="item">
+    <!-- 课程名称 -->
     <view class='title-list'>{{item.name}}</view>
-      <view>
-        <view class="first-list">教室</view><text class="detail-list" space="emsp">  {{item.room}}\n</text>
-        <view class="first-list">周数</view><text class="detail-list" space="emsp">  {{item.week_list}}周\n</text>
-        <view class="first-list">节数</view><text class="detail-list" space="emsp">  {{item.showtime}}\n</text>
-        <view class="first-list">老师</view><text class="detail-list" space="emsp">  {{item.teacher}}\n</text>
+    <!-- 课程详细信息 -->
+    <view class="detail-list">
+      <view class="item classroom">
+        <view class="left">教室</view>
+        <view class="right">{{item.room}}</view>
       </view>
-      <view class='blocks-space'></view>
+      <view class="item week_list">
+        <view class="left">周数</view>
+        <view class="right">{{item.week_list}}</view>
+      </view>
+      <view class="item showtime">
+        <view class="left">节数</view>
+        <view class="right">{{item.showtime}}</view>
+      </view>
+      <view class="item teacher">
+        <view class="left">老师</view>
+        <view class="right">{{item.teacher}}</view>
+      </view>
+    </view>
   </view>
   <view wx:if="{{!hasSubject}}">课表导入错误</view>
 </view>

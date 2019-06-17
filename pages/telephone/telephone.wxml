@@ -1,0 +1,57 @@
+<!--pages/telephone/telephone.wxml-->
+<view class="wrapper">
+    <van-tabs>
+        <van-tab title="食在矿大">
+            <view class="eat category">
+                <view class="eatTitle">
+                    <view class="place">地址</view>
+                    <view class="tele">服务电话</view>
+                </view>
+                <view class="eatContent" wx:for="{{eatContent}}" wx:key="item">
+                    <view class="place">{{item.place}}</view>
+                    <view class="tele" data-tele="{{item.tele}}" bindtap="tele">{{item.tele}}</view>
+                </view>
+            </view>
+        </van-tab>
+        
+        <van-tab title="住在矿大">
+            <view class="live category">
+                <view class="liveTitle">
+                    <view class="place">地址</view>
+                    <view class="tele">服务电话</view>
+                </view>
+                <view class="liveContent" wx:for="{{liveContent}}" wx:key="item">
+                    <view class="place">{{item.place}}</view>
+                    <view class="tele" data-tele="{{item.tele}}" bindtap="tele">{{item.tele}}</view>
+                </view>
+            </view>
+        </van-tab>
+
+        <van-tab title="购在矿大">
+            <view class="purchase category">
+                <view class="purchaseTitle">
+                    <view class="place">店名</view>
+                    <view class="tele">服务电话</view>
+                </view>
+                <view class="purchaseContent" wx:for="{{purchaseContent}}" wx:key="item">
+                    <view class="place">{{item.place}}</view>
+                    <view class="tele" data-tele="{{item.tele}}" bindtap="tele" >{{item.tele}}</view>
+                </view>
+            </view>
+        </van-tab>
+
+        <van-tab title="矿大日常">
+            <view class="daily category">
+                <view class="dailyTitle">
+                    <view class="place">店名</view>
+                    <view class="tele">服务电话</view>
+                </view>
+                <view class="dailyContent" wx:for="{{dailyContent}}" wx:key="item">
+                    <view class="place">{{item.place}}</view>
+                    <view class="tele" data-tele="{{item.tele}}" bindtap="tele">{{item.tele}}</view>
+                </view>
+            </view>
+        </van-tab>
+
+    </van-tabs>
+</view>

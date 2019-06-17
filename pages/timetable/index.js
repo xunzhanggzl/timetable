@@ -9,9 +9,22 @@ Page({
     // 添加课程之类的功能显示与否
     popupShow:false,
     // 各个课程的颜色
-    colorArrays: ["#7D5BE6", "#1EC0FF", "#F9C00C", "#F68657", "#E03C8A",
-                  "#1492E6", "#41D3BD", "#EA5E94", "#2680EB", "#02B6C5", 
-                  "#00AA90", "#0089A7", "#FFB11B", "#8CD79O", "#DB4D6D"],
+    colorArrays: ["rgba(125,91,230,0.8)", 
+                  "rgba(30,192,255,0.8)",
+                  "rgba(249,192,12,0.8)",
+                  "rgba(246,134,87,0.8)",
+                  "rgba(224,60,138,0.8)",
+                  "rgba(20,146,230,0.8)",
+                  "rgba(65,211,189,0.8)",
+                  "rgba(234,94,148,0.8)",
+                  "rgba(38,128,235,0.8)",
+                  "rgba(2,182,197,0.8)",
+                  "rgba(0,170,144,0.8)",
+                  "rgba(0,137,167,0.8)",
+                  "rgba(255,177,27,0.8)",
+                  "rgba(140,215,144,0.8)",
+                  "rgba(219,77,109,0.8)",
+                  ],
     colorObj : {},
     wlist: [],
     currentWeek: 16,
@@ -34,7 +47,8 @@ Page({
     // 导航周的相关数据
     allweek: [],
     // 显示或隐藏导航周flag
-    allweekflag:true,
+    allweekflag:false,
+    scrollLeft:0
   },
 
   onLoad: function (options) {
@@ -60,6 +74,8 @@ Page({
     点击显示或隐藏导航周
   */
   titlepush() {
+    let copyWeek = this.data.copyWeek;
+    let leftDistance = (copyWeek - 3) * 140;
     if (this.data.allweekflag === true) {
       this.setData({
         allweekflag: false
@@ -68,6 +84,13 @@ Page({
       this.setData({
         allweekflag: true
       })
+      // 设置默认当前周显示在中央
+      setTimeout(() => {
+        //假装异步获取数据
+        this.setData({
+          scrollLeft: leftDistance
+        });
+      }, 100);
     }
   },
 

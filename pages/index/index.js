@@ -7,14 +7,16 @@ Page({
   data: {
     elec_choose_button:true,
     elec_show_text:false,
-    motto: 'Hello World',
     hasSubject: false,
     subjects: [],
     currentWeek:16,
     currentDay:4,
     weekName:"第一周",
     elec:0,
-    balance:"统一身份认证后可以查看"
+    balance:"统一身份认证后可以查看",
+    // time
+    classTimestart: ["08:00", "10:15", "14:00", "16:15", "19:00"],
+    classTimeend: ["09:45", "12:00", "15:45", "18:00", "20:45"],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -27,24 +29,27 @@ Page({
     this.getBalance();
   },
 
+  /* 
+    获取余额
+  */
   getBalance(){
-    let strNew = wx.getStorageSync('balance') || '统一身份认证后可以查看';
+    let str = '统一身份认证后可以查看';
+    let strNew = wx.getStorageSync('balance') || str;
     this.setData({
       balance: strNew
     })
   },
 
+  /* 
+    更新余额
+  */
   updateBalance(){
     let username = wx.getStorageSync('identityusername');
     let password = wx.getStorageSync('identitypassword');
     let that = this;
+    let str = '统一身份认证后可以查看';
 
-    if (this.data.balance === '统一身份认证后可以查看') {
-      // wx.showToast({
-      //   title: '登录后方可更新',
-      //   icon: 'none',
-      //   duration: 1000
-      // });
+    if (this.data.balance === str) {
       wx.showModal({
         content: '登录后方可更新,是否立即登录',
         success(res) {
@@ -64,6 +69,7 @@ Page({
       title: '正在更新中',
       duration: 10000
     })
+    // 发起请求
     wx.request({
       url: 'https://liuh321.club/balance',
       data: {
@@ -94,45 +100,47 @@ Page({
     });
   },
 
-  getEleInfo(){
-    var elec_info = wx.getStorageSync("elec_info") || null;
-    if (elec_info == null) {
-      return;
-    } else {
-      console.log(elec_info);
-      var that = this;
-      wx.showNavigationBarLoading();
-      util.getReq("ele", elec_info, function (res) {
-        that.setData({
-          elec_choose_button: false,
-          elec_show_text: true,
-        });
-        console.log(res);
-        if (res.code == 1) {
-          that.setData({
-            elec_choose_button: true,
-            elec_show_text: false,
-          });
-          wx.showToast({
-            title: '暂不支持该功能',
-            icon: 'none',
-          });
-          return;
-        } else {
-          that.setData({
-            elec: res.data.ele
-          });
-          wx.hideNavigationBarLoading();
-        }
-      });
+  // getEleInfo(){
+  //   var elec_info = wx.getStorageSync("elec_info") || null;
+  //   if (elec_info == null) {
+  //     return;
+  //   } else {
+  //     console.log(elec_info);
+  //     var that = this;
+  //     wx.showNavigationBarLoading();
+  //     util.getReq("ele", elec_info, function (res) {
+  //       that.setData({
+  //         elec_choose_button: false,
+  //         elec_show_text: true,
+  //       });
+  //       console.log(res);
+  //       if (res.code == 1) {
+  //         that.setData({
+  //           elec_choose_button: true,
+  //           elec_show_text: false,
+  //         });
+  //         wx.showToast({
+  //           title: '暂不支持该功能',
+  //           icon: 'none',
+  //         });
+  //         return;
+  //       } else {
+  //         that.setData({
+  //           elec: res.data.ele
+  //         });
+  //         wx.hideNavigationBarLoading();
+  //       }
+  //     });
 
-    }
-  },
+  //   }
+  // },
 
   getTodaySubject: function() {
     let that = this;
     let subjectList = wx.getStorageSync("kb") || [];
     let addsubjectList = wx.getStorageSync("setClass") || [];
+    let classTimestart = this.data.classTimestart;
+    let classTimeend = this.data.classTimeend;
     //console.info(subjectList);   //本地数据查看
     if (subjectList.length > 0 || addsubjectList.length > 0) {
 
@@ -142,6 +150,13 @@ Page({
         //console.info(item['day']);
         if (this.hasSubject(item['week_list'], this.data.currentWeek) && item['day'] === this.data.currentDay){
           item.showTime = item['start'] + "-" + (item['start'] + item['step'] - 1) + "节";
+          item.startTime = classTimestart[(item['start']+1)/2 - 1];
+          if (item['step'] === 4) {
+            item.endTime = classTimeend[(item['start'] + 3) / 2 - 1];            
+          } else {
+            item.endTime = classTimeend[(item['start'] + 1) / 2 - 1];
+          }
+          item.totaltime = item.startTime + "-" + item.endTime;
           //console.info(item['day'])
           kbListCurWeek.push(item);
         }
@@ -176,6 +191,7 @@ Page({
       });
     }
   },
+
   hasSubject: function (arr, val) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i] == val) {
@@ -184,6 +200,7 @@ Page({
     }
     return false;
   },
+
   onShow: function(){
     util.getOpen();
     let currentDay = wx.getStorageSync("currentDay") || 1;
@@ -191,14 +208,13 @@ Page({
     this.setData({ currentWeek: currentWeek, currentDay: currentDay});
     this.getTodaySubject();
   },
+
   onPullDownRefresh: function(){
     util.getOpen();
     let currentDay = wx.getStorageSync("currentDay") || 1;
     let currentWeek = wx.getStorageSync("currentWeek") || 1;
     this.setData({ currentWeek: currentWeek, currentDay: currentDay });
     this.getTodaySubject();
-  },
-  onShareAppMessage: function () {
+  }
 
-  },
 })

@@ -1,0 +1,59 @@
+/* pages/telephone/telephone.wxss */
+.wrapper{
+    margin: 20rpx;
+}
+.category{
+    margin: 30rpx;
+    font-size: 30rpx;
+}
+.purchase .purchaseTitle, 
+.eat .eatTitle,
+.live .liveTitle,
+.daily .dailyTitle
+
+{
+    display: flex;
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: aqua;
+}
+.purchase .purchaseTitle .place, 
+.purchase .purchaseContent .place,
+.eat .eatTitle .place,
+.eat .eatContent .place,
+.live .liveTitle .place,
+.live .liveContent .place,
+.daily .dailyTitle .place,
+.daily .dailyContent .place
+{
+    width: 70%;
+    text-align: center;
+}
+.purchase .purchaseTitle .tele,
+.purchase .purchaseContent .tele,
+.eat .eatTitle .tele,
+.eat .eatContent .tele,
+.live .liveTitle .tele,
+.live .liveContent .tele,
+.daily .dailyTitle .tele,
+.daily .dailyContent .tele
+{
+    width: 30%;
+    text-align: center;
+}
+.purchase .purchaseContent .tele,
+.eat .eatContent .tele,
+.live .liveContent .tele,
+.daily .dailyContent .tele
+{
+    color: cornflowerblue;
+}
+.purchase .purchaseContent,
+.eat .eatContent,
+.live .liveContent,
+.daily .dailyContent
+
+{
+    display: flex;
+    margin-bottom: 20rpx;
+}

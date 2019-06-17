@@ -45,9 +45,9 @@
     bind:change="onPickerChange"
   />
 </van-dialog>
-
-  <scroll-view scroll-x="true" class="allweek" hidden="{{allweekflag}}"> 
-    <view class="btnx" wx:for="{{allweek}}" data-index="{{item.index}}" bindtap="allweekchange" wx:key="item">
+<van-transition show="{{allweekflag}}" duration="300" custom-class="block" name="fade-right">
+  <scroll-view scroll-x="true" class="allweek" scroll-left="{{scrollLeft}}rpx"> 
+    <view class="btnx {{item.index==currentWeek?'select':''}}" wx:for="{{allweek}}" data-index="{{item.index}}" id="{{item.index == copyWeek ? 'cur':''}}" bindtap="allweekchange" wx:key="item">
       <view class="btnxtitle">第<text>{{item.index}}</text>周</view>
       <view class="btnxcontent">
         <view wx:for="{{item.msg}}" wx:key="item.msg" class="kcb-item">
@@ -56,6 +56,7 @@
       </view>
     </view>
   </scroll-view>
+</van-transition>
 
 
 <view class="top">

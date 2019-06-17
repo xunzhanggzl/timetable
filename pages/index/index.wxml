@@ -1,31 +1,33 @@
 <!--index.wxml-->
-<view class='page__hd'>
-  
+<view class=''>
+  <!-- 今日课程 -->
   <view class='pandel'>
     <view class='panel-header'>
       <image class='panel-header-image' src='../../icon/todayclass.png'></image>
       <view class='panel-header-title'>今日课程</view>
     </view>
-    <view class='panel-body'>
-      <!-- <view wx:for="{{subjects}}" wx:for-index="idx" wx:key="item" wx:for-item="item"> -->
-        <view class='subject'  wx:for="{{subjects}}" wx:for-index="idx" wx:key="item" wx:for-item="item">
-          <view class='subject-time'>
-            {{item.showTime}}
+    <view class='course'>
+      <view class='subject' wx:for="{{subjects}}" wx:for-index="idx" wx:key="item">
+        <view class='subject-time'>
+          {{item.showTime}}
+        </view>
+        <view class="subject-detail">
+          <view class='subject-name'>
+            {{item.name}}
           </view>
-          <view class="subject-detail">
-            <view class='subject-name'>
-              {{item.name}}
-            </view>
-            <view>
-              <image class='subject-room-image' src='../../icon/dingwei.png'></image>
+          <view class="subject-place-time">
+            <view class="left">
+              <image class='subject-room-image-place' src='../../icon/place.png'></image>
               <view class='subject-room'>{{item.room}}</view>
+            </view>
+            <view class="right">
+              <image class='subject-room-image-time' src='../../icon/time.png'></image>
+              <view class='subject-room'>{{item.totaltime}}</view>
             </view>
           </view>
         </view>
-        <!-- <view class='clear'></view> -->
-      <!-- </view> -->
-
-
+      </view>
+        
       <view wx:if="{{!hasSubject}}" style="padding-left:80rpx;font-size:30rpx;">今天没有课程哦</view>
 
     </view>
@@ -37,140 +39,70 @@
       <image class='panel-header-image' src='../../icon/tool.png'></image>
       <view class='panel-header-title'>工具</view>
     </view>
-    <view class='nav-list' >
-
-      <!-- <van-row >
-        <van-col span="6">
-          <navigator  target="miniProgram" open-type="navigate" app-id="wx546c0e2609fbb964" class="navigator-style">
-            <view class='wechat'>
-              <image class='wechatapp-image' src='../../icon/touxiang.png'></image> 
-              <view class='wechat-text'>矿大头像戳</view>               
-            </view>
-          </navigator>
-        </van-col>
-        <van-col span="6">
-          <navigator hidden="true" url='../../pages/avatar/index/index' class="navigator-style">
-              <view class='wechat'>
-              <image class='wechatapp-image' src='../../icon/Logo-01.png'></image>
-              <view class='wechat-text'>圣诞头像</view>
-              </view>
-
-          </navigator>
-        </van-col>
-
-        <van-col span="6">
-          <navigator url='../../pages/bus/bus' class="navigator-style">
-              <view class='wechat'>
-              <image class='wechatapp-image' src='../../icon/bashiche.png'></image>
-              <view class='wechat-text'>校车</view>
-              </view>
-          </navigator>
-        </van-col>
-
-        <van-col span="6">
-          <navigator url='../../pages/calendar/calendar' class="navigator-style">
-              <view class='wechat'>
-              <image class='wechatapp-image' src='../../icon/rili.png'></image>
-              <view class='wechat-text'>校历</view>
-              </view>
-          </navigator>
-        </van-col>
-
-        <van-col span="6">
-          <navigator url='../../pages/roomspace/roomspace' class="navigator-style">
-              <view class='wechat'>
-              <image class='wechatapp-image' src='../../icon/dingwei.png'></image>
-              <view class='wechat-text'>空教室查询</view>
-              </view>
-          </navigator>
-        </van-col>
-        
-
-      </van-row> -->
-      
-
+    <view class='nav-list'>
       <view class="nav">
-        <navigator  target="miniProgram" open-type="navigate" app-id="wx546c0e2609fbb964" class="navigator-style">
-          
-            <image class='wechatapp-image' src='../../icon/kdavatar.png'></image> 
-          
+        <navigator hover-class="none" target="miniProgram" open-type="navigate" app-id="wx546c0e2609fbb964" class="navigator-style">
+          <image class='wechatapp-image' src='../../icon/kdavatar.png'></image> 
         </navigator>
-        <view class='wechat-text'>矿大头像戳</view>               
-
+        <view class='wechat-text'>矿大头像戳</view>
       </view>
 
       <view class="nav">
-        <navigator url='../../pages/roomspace/roomspace' class="navigator-style">
-          
-            <image class='wechatapp-image' src='../../icon/classroom.png'></image>
+        <navigator hover-class="none" url='../../pages/roomspace/roomspace' class="navigator-style">
+          <image class='wechatapp-image' src='../../icon/classroom.png'></image>
         </navigator>
         <view class='wechat-text'>教室查询</view>
       </view>
 
       <view class="nav">
-        <navigator url='../../pages/bus/bus' class="navigator-style">
-          
-            <image class='wechatapp-image' src='../../icon/bus.png'></image>
+        <navigator hover-class="none" url='../../pages/bus/bus' class="navigator-style">
+          <image class='wechatapp-image' src='../../icon/bus.png'></image>
         </navigator>
         <view class='wechat-text'>校车时间</view>
       </view>
 
       <view class="nav">
-        <navigator url='../../pages/calendar/calendar' class="navigator-style">
-          
-            <image class='wechatapp-image' src='../../icon/calendar.png'></image>
+        <navigator hover-class="none" url='../../pages/calendar/calendar' class="navigator-style">
+          <image class='wechatapp-image' src='../../icon/calendar.png'></image>
         </navigator>
         <view class='wechat-text'>学校日历</view>
       </view>
 
       <view class="nav">
-        <navigator url='../../pages/library/library' class="navigator-style">
-          
-            <image class='wechatapp-image' src='../../icon/library.png'></image>
+        <navigator hover-class="none" url='../../pages/library/library' class="navigator-style">
+          <image class='wechatapp-image' src='../../icon/library.png'></image>
         </navigator>
         <view class='wechat-text'>图书馆藏</view>
       </view>
 
       <view class="nav">
-        <navigator url='../../pages/electricity/electricity' class="navigator-style" >
-          
-            <image class='wechatapp-image' src='../../icon/electricity.png'></image>
+        <navigator hover-class="none" url='../../pages/electricity/electricity' class="navigator-style" >
+          <image class='wechatapp-image' src='../../icon/electricity.png'></image>
         </navigator>
         <view class='wechat-text'>宿舍用电</view>
       </view>
+
+      <view class="nav">
+        <navigator hover-class="none" url='../../pages/telephone/telephone' class="navigator-style" >
+          <image class='wechatapp-image' src='../../icon/electricity.png'></image>
+        </navigator>
+        <view class='wechat-text'>常用电话</view>
+      </view>
+      
     </view>
   </view>
 
-<!-- <view class="increase-distance"></view> -->
-
-  <!-- <view class='pandel'>
+  <!-- 一卡通 -->
+  <view class='pandel'>
     <view class='panel-header'>
       <image class='panel-header-image' src='../../icon/card.png'></image>
       <view class='panel-header-title'>一卡通</view>
     </view>
-    <navigator url="../../pages/electricity/electricity" open-type="redirect">
-      <view class='position-helper'>  
-          <text class="text-elec">宿舍余电：</text>
-          <image src='../../icon/dianliang.png' class='elec-bg'></image>
-          <text wx:if="{{elec_choose_button}}" class='text-show-elec-button'>
-            选择宿舍
-          </text>
-          <text wx:if="{{elec_show_text}}" class='text-show-elec-text'>{{elec}} 度</text>
-      </view>
-    </navigator>
-  </view> -->
-
-
-    <view class='pandel'>
-      <view class='panel-header'>
-        <image class='panel-header-image' src='../../icon/card.png'></image>
-        <view class='panel-header-title'>一卡通</view>
-      </view>
-      <view class="balance">
-        <view class="yue">余额：{{balance}}</view>
-        <!-- <button class="update" size="mini" >更新</button> -->
-        <van-button type="info" size="small"  class="update" bindtap="updateBalance">更新</van-button>
-      </view> 
-    </view>
+    <view class="balance">
+      <view class="yue">余额：{{balance}}</view>
+      <!-- <button class="update" size="mini" >更新</button> -->
+      <van-button type="info" size="small"  class="update" bindtap="updateBalance">更新</van-button>
+    </view> 
+  </view>
 
 </view>

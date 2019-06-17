@@ -8,7 +8,8 @@
       "van-picker": "../../vant-weapp/picker/index",
       "van-button": "../../vant-weapp/button/index",
       "van-popup": "../../vant-weapp/popup/index",
-      "van-icon": "../../vant-weapp/icon/index"
+      "van-icon": "../../vant-weapp/icon/index",
+      "van-transition":"../../vant-weapp/transition/index"
   },
   "enablePullDownRefresh": true,
   "navigationStyle": "custom"

@@ -1,23 +1,49 @@
 .pages{
-  margin:30rpx;
+  margin:50rpx;
 }
-
+.detail-info{
+  border: 2rpx solid black;
+  margin-bottom: 30rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
 .title-list{
-  font-size: 22px;
+  font-size: 46rpx;
   color: #333;
+  background-color: #00e0ff;
+  padding-left: 10rpx;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
 }
-
-.first-list{
+.detail-list{
+  display: flex;
+  flex-direction: column;
   color: #333;
   font-weight: 500;
-  display: inline-block;
-  height: 50rpx;
 }
-
-.detail-list{
-  color: gray;
+.detail-list .item{
+  display: flex;
+  height: 70rpx;
+  line-height: 70rpx;
 }
-
-.blocks-space{
-  height: 50rpx;
+.item .left{
+  padding-left: 10rpx;
+  box-sizing: border-box;
+  width: 25%;
+}
+.item .right{
+  width: 75%;
+}
+.classroom{
+  background-color: #f38181;
+}
+.week_list{
+  background-color: #fce38a;
+}
+.showtime{
+  background-color: #eaffd0;
+}
+.teacher{
+  background-color: #95e1d3;
 }

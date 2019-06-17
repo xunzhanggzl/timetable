@@ -24,7 +24,8 @@
     "pages/library/library",
     "pages/bookdetail/bookdetail",
     "pages/identitylogin/identitylogin",
-    "pages/mybook/mybook"
+    "pages/mybook/mybook",
+    "pages/telephone/telephone"
   ],
   "tabBar": {
     "color": "#626567",

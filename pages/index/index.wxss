@@ -2,6 +2,10 @@
 .pandel{
   margin: 15rpx;
 }
+.panel-header{
+  height: 80rpx;
+  line-height: 80rpx;
+}
 .panel-header-title{
   font-size: 36rpx;
 }
@@ -12,12 +16,61 @@
   margin: 20rpx;
 }
 
-.panel-header{
-  height: 80rpx;
-  font-size: 48rpx;
-  line-height: 80rpx;
+/* 今日课程 */
+.course{
+  margin: 20rpx;
+}
+.subject{
+  display: flex;
+  align-items:center;
+  margin: 14rpx 0;
+}
+.subject-time{
+  width: 30%;
+  box-sizing: border-box;
+  padding-left: 22rpx;
+  text-align: center;
+}
+.subject-detail{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.subject-name{
+  font-size: 30rpx;
+}
+.subject-place-time{
+  display: flex;
+  padding-left:10rpx;
+
+}
+.subject-place-time .left{
+  width: 40%;
+}
+.subject-place-time .right{
+  width: 60%;
+}
+.subject-room-image-place{
+  height: 28rpx;
+  width: 24rpx;
+  float: left;
+  margin-right: 6rpx;
+  margin-top: 6rpx;
+}
+.subject-room-image-time{
+  height: 25rpx;
+  width: 25rpx;
+  float: left;
+  margin-right: 6rpx;
+  margin-top: 8rpx;
+}
+.subject-room{
+  box-sizing: border-box;
+  padding-left: 36rpx;
+  font-size: 24rpx;
 }
 
+/* 工具栏 */
 .nav-list{
   display: flex;
   flex-wrap:wrap;
@@ -51,6 +104,7 @@
   color: grey;
 }
 
+/* 一卡通余额 */
 .balance{
   font-size: 30rpx;
   position: relative;
@@ -62,124 +116,8 @@
   right: 90rpx;
   top: 0rpx;
 }
-.panel-body{
-  margin: 10rpx;
-}
-/* .subject-time{
-  padding: 30rpx;
-  float: left;
-}
-.subject-room-image{
-  height: 25rpx;
-  width: 25rpx;
-  float: left;
-  margin-right: 5rpx;
-}
-.subject-room{
-  font-size: 24rpx;
-}
-
-.subject{
-  margin: 5rpx;
-} */
-
-.subject{
-  display: flex;
-  align-items:center;
-  margin-bottom: 14rpx;
-}
-.subject-time{
-  width: 30%;
-  box-sizing: border-box;
-  padding-left: 50rpx;
-  text-align: center;
-}
-.subject-detail{
-  width: 80%;
-}
-.subject-room-image{
-  height: 25rpx;
-  width: 25rpx;
-  float: left;
-  margin-right: 6rpx;
-  margin-top: 8rpx;
-
-}
-.subject-room{
-  font-size: 24rpx;
-}
 
 
 
-/* .clear{
-  clear: both;
-} */
-
-.wechat{
-  text-align: center;
-  font-size: 30rpx;
-}
 
 
-.button-elec{
-  width:300rpx;
-  height:100rpx;
-  font-size: 40rpx;
-  line-height: 100rpx;
-  position:absolute;
-  left:220rpx;
-  
-  color:grey;
-}
-
-.text-elec{
-  font-size: 32rpx;
-  font-weight: 200;
-  color:black;
-}
-
-.text-show-elec-button{
-  height:50rpx;
-  line-height: 20rpx;
-  font-size: 50rpx;
-  font-weight:500;
-  display: block;
-  color: grey;
-  margin-left:230rpx;
-  margin-top:70rpx;
-}
-
-.text-show-elec-text{
-  height:50rpx;
-  line-height: 50rpx;
-  font-size: 50rpx;
-  font-weight:500;
-  display: block;
-  color: grey;
-  margin-left:230rpx;
-  margin-top:70rpx;
-}
-
-.elec-bg{
-  position: absolute;
-  height: 350rpx;
-  width: 350rpx;
-  top: -150rpx;
-  left: 185rpx;
-  z-index: -1;
-}
-
-/* .wechat-text{
-  width: 150rpx;
-  margin-left:-15px; 
-  margin-top: 40rpx;
-  color: grey;
-} */
-
-.week-change{
-  text-align: center;
-}
-
-.position-helper{
-  position: relative;
-}

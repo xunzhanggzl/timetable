@@ -23,11 +23,11 @@
           </view>
           <view class='exam-content'>
             <view>
-              <image class='exam-time-image' src='../../icon/shijian.png'></image>
+              <image class='exam-time-image' src='../../icon/time.png'></image>
               <view class='exam-content'>{{item.time}}</view>
             </view>
             <view class='exam-room'>
-              <image class='exam-room-image' src='../../icon/dingwei.png'></image>
+              <image class='exam-room-image' src='../../icon/place.png'></image>
               <view class='exam-content'>{{item.room}}</view>
             </view>
           </view>

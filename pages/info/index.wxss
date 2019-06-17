@@ -35,7 +35,7 @@
   margin: 15rpx;
 }
 .exam-time{
-    font-size: 48rpx;
+  font-size: 48rpx;
   text-align: center;
 }
 .exam-name{
@@ -49,16 +49,19 @@
   font-size: 28rpx;
 }
 .exam-time-image{
-  height: 35rpx;
-  width: 35rpx;
+  height: 30rpx;
+  width: 30rpx;
   float: left;
   margin-right: 20rpx;
+  margin-top: 10rpx;
 }
 .exam-room-image{
-  height: 35rpx;
-  width: 35rpx;
+  height: 36rpx;
+  width: 30rpx;
   float: left;
   margin-right: 20rpx;
+  margin-top: 10rpx;
+
 }
 
 .record{

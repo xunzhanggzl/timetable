@@ -43,6 +43,12 @@
   white-space: nowrap;
   background: #FFFCE3;
 }
+/* 隐藏scroll-view滚动条 */
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 .allweek .btnx{
   display: inline-block;
   background-color: #C0EAFA;
@@ -52,6 +58,13 @@
   height: 110rpx;
   border-radius: 20rpx;
   vertical-align:top;
+}
+.allweek .select{
+  /* 暂时设置的颜色 */
+  background-color: rgba(183,104,228, 0.77);
+}
+.allweek #cur{
+  background-color: rgba(97,249,233,0.77) !important;
 }
 .btnx .btnxtitle{
   width: 100%;

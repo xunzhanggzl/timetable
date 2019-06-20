@@ -62,6 +62,13 @@
       </view>
 
       <view class="nav">
+        <navigator hover-class="none" url='../../pages/electricity/electricity' class="navigator-style">
+          <image class='wechatapp-image' src='../../icon/electricity.png'></image>
+        </navigator>
+        <view class='wechat-text'>宿舍用电</view>
+      </view>
+      
+      <view class="nav">
         <navigator hover-class="none" url='../../pages/calendar/calendar' class="navigator-style">
           <image class='wechatapp-image' src='../../icon/calendar.png'></image>
         </navigator>
@@ -75,16 +82,10 @@
         <view class='wechat-text'>图书馆藏</view>
       </view>
 
-      <view class="nav">
-        <navigator hover-class="none" url='../../pages/electricity/electricity' class="navigator-style" >
-          <image class='wechatapp-image' src='../../icon/electricity.png'></image>
-        </navigator>
-        <view class='wechat-text'>宿舍用电</view>
-      </view>
 
       <view class="nav">
         <navigator hover-class="none" url='../../pages/telephone/telephone' class="navigator-style" >
-          <image class='wechatapp-image' src='../../icon/electricity.png'></image>
+          <image class='wechatapp-image' src='../../icon/phone.png'></image>
         </navigator>
         <view class='wechat-text'>常用电话</view>
       </view>

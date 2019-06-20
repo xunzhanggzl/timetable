@@ -10,13 +10,18 @@
 .eat .eatTitle,
 .live .liveTitle,
 .daily .dailyTitle
-
 {
     display: flex;
     height: 80rpx;
     line-height: 80rpx;
-    background-color: aqua;
 }
+.placeheading{
+    background-color: #ff5959;
+}
+.teleheading{
+    background-color: #facf5a;
+}
+
 .purchase .purchaseTitle .place, 
 .purchase .purchaseContent .place,
 .eat .eatTitle .place,
@@ -55,5 +60,6 @@
 
 {
     display: flex;
-    margin-bottom: 20rpx;
+    padding: 10rpx 0;
+    border-bottom: 2rpx solid gray;
 }

@@ -17,8 +17,8 @@ Page({
 
       show_jc: false,
       columns_jc: [],
-      typeIndex_jc: 1,
-      typeName_jc: "第1节课",
+      typeIndex_jc_all: [],
+      typeName_jc: "",
       docu_title_jc: "节次:",
 
       show_lh: false,
@@ -34,7 +34,9 @@ Page({
       roomspace:[],
 
       // 新增
-      showData:false
+      showData:false,
+      zhen:true
+
   },
 
   onLoad:function(){
@@ -47,8 +49,11 @@ Page({
     for (var i = 0; i < 20; i++) {
       week[i] = "第" + (i + 1) + "周";
     };
-    for (var i = 0; i < 10; i++) {
-      jc[i] = "第" + (i + 1) + "节课";
+    for (let i = 0; i < 10; i++) {
+      let obj = {};
+      obj.name = `第${i+1}节课`;
+      obj.flag = false;
+      jc.push(obj);
     };
     let current_week = wx.getStorageSync("currentWeek");
 
@@ -62,6 +67,9 @@ Page({
     })
   },
 
+  /* 
+    选择周次
+  */
   onPickerChange_week: function (event) {
     const { picker, value, index } = event.detail;
     this.setData({
@@ -79,6 +87,9 @@ Page({
     this.setData({ show_week: false });
   },
 
+  /* 
+    选择星期几
+  */
   onPickerChange_day: function (event) {
     // console.info(event);
     const { picker, value, index } = event.detail;
@@ -99,16 +110,52 @@ Page({
     this.setData({ show_day: false });
   },
 
+  /* 
+    选择节次
+  */
   onPickerChange_jc: function (event) {
-    // console.info(event);
-    const { picker, value, index } = event.detail;
-    // console.info(index);
+    let index = event.currentTarget.dataset.index;
+    if (this.data.columns_jc[index].flag === true) {
+      let columns_jc = this.data.columns_jc;
+      columns_jc[index].flag = false;
+      // this.data.columns_jc[index].flag = false
+      this.setData({
+        columns_jc: columns_jc
+      })
+    } else {
+      let columns_jc = this.data.columns_jc;
+      columns_jc[index].flag = true;
+      // 直接这样不行。。。
+      // this.data.columns_jc[index].flag = true  
+      this.setData({
+        columns_jc: columns_jc
+      })
+    }
 
-    this.setData({
-      typeIndex_jc: index,
-      typeName_jc: this.data.columns_jc[index],
-      classTime:(index+1)
+    if (!this.data.typeIndex_jc_all.includes(index)) {
+      this.data.typeIndex_jc_all.push(index);      
+    } else {
+      let i = this.data.typeIndex_jc_all.indexOf(index);
+      this.data.typeIndex_jc_all.splice(i, 1);
+    }
+    // console.log(this.data.typeIndex_jc_all)
+
+    let str = [...this.data.typeIndex_jc_all];
+    let str1 = str.map((item) => {
+      item ++;
+      return item;
     })
+    str1.toString();
+    if (str1.length === 0) {
+      this.setData({
+        typeName_jc: "",
+      })
+    } else {
+      this.setData({
+        typeName_jc: `第${str1}节课`,
+      })
+    }
+    
   },
 
   onPickerShow_jc: function (event) {
@@ -119,6 +166,9 @@ Page({
     this.setData({ show_jc: false });
   },
 
+  /* 
+    选择楼号
+  */
   onPickerChange_lh: function (event) {
     // console.info(event);
     const { picker, value, index } = event.detail;
@@ -139,52 +189,39 @@ Page({
     this.setData({ show_lh: false });
   },
 
-  // bindinputWeek:function(e){
-  //   //console.log(e.detail);
-  //   this.setData({
-  //     week:e.detail
-  //   });
-  // },
-
-  // bindinputDay: function (e) {
-  //   //console.log(e.detail);
-  //   this.setData({
-  //     day: e.detail
-  //   });
-  // },
-
-  // bindinputClass: function (e) {
-  //   //console.log(e.detail);
-  //   this.setData({
-  //     classTime: e.detail
-  //   });
-  // },
-
-  // bindinputFlat: function (e) {
-  //   //console.log(e.detail);
-  //   this.setData({
-  //     flat: e.detail
-  //   });
-  // },
-
   submit:function(){
+    // 计算classTime 比如选择第 1 节课和第 4 节课，classTime = 2的0次方 + 2的3次方 = 9
+    let arr = [...this.data.typeIndex_jc_all];
+    if (arr.length === 0) {
+      wx.showToast({
+        title: '未选中节数',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    let sum = 0;
+    arr.forEach((item) => {
+      sum = sum + Math.pow(2, item);
+    })
+    // console.log(sum);
+    this.setData({
+      classTime: sum
+    })
+
     var info = {};
     info.zc = Number(this.data.week);
     info.xq = Number(this.data.day);
     info.jc = Number(this.data.classTime);
     info.lh = this.data.flat;
-    console.log(info);
+    // console.log(info);
     let that=this;
-    util.req('room',info,function(e){
-      console.log(e);
+    util.req('room1',info,function(e){
+      // console.log(e);
       that.setData({
         roomspace:e["data"]
       });
       if(e.code==0){
-        // Dialog.alert({
-        //   message: that.data.roomspace,
-        //   messageAlign:"left"
-        // });
         that.setData({
           showData:true
         })

@@ -14,10 +14,10 @@
       <view class="contact-title">联 系 我 们</view>
       <view class="contact-way">
         <view class="qq">
-          <image src="../../icon/qq.png" mode="widthFix"></image>
+          <image src="../../icon/qq.png" mode="widthFix" bindtap="saveqq"></image>
         </view>
         <view class="wx">
-          <image src="../../icon/weixin.jpg" mode="widthFix"></image>
+          <image src="../../icon/weixin.jpg" mode="widthFix" bindtap="savewx"></image>
         </view>
       </view>
     </view>

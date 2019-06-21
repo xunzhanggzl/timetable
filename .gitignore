@@ -14,4 +14,4 @@ $RECYCLE.BIN/
 node_modules/
 
 app.js
-/utils
+/utils/
